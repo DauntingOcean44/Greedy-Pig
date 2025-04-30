@@ -94,4 +94,39 @@ focus_next = NodePath("../WagerA")
 focus_previous = NodePath("../WagerB")
 text = "$1"
 
+[node name="CommitTable" type="VBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -263.0
+offset_top = -84.0
+offset_bottom = 85.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="VetoChoice" type="Label" parent="Control/CommitTable"]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_fonts/font = ExtResource("1_g0j3m")
+theme_override_font_sizes/font_size = 32
+text = "Veto: $5"
+
+[node name="Outcome" type="Label" parent="Control/CommitTable"]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_fonts/font = ExtResource("1_g0j3m")
+theme_override_font_sizes/font_size = 32
+text = "Outcome
+"
+
+[node name="WagerChoice" type="Label" parent="Control/CommitTable"]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_fonts/font = ExtResource("1_g0j3m")
+theme_override_font_sizes/font_size = 32
+text = "Wager: $5"
+
 [connection signal="button_up" from="Control/WagerContainer/WagerA" to="." method="_on_wager_a_button_up"]
