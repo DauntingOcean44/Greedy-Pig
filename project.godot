@@ -11,8 +11,18 @@ config_version=5
 [application]
 
 config/name="Greedy Pig"
+run/main_scene="res://main.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="res://sprites/thumbnail.png"
+
+[global_group]
+
+start_game="Will activate when the ready button is pressed."
+wager_amount="The player's chosen wager."
+
+[gui]
+
+theme/custom_font="res://fonts/MontserratBlack-3zOvZ.ttf"
 
 [rendering]
 

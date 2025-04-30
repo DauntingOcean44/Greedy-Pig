@@ -1,3 +1,97 @@
-[gd_scene format=3 uid="uid://6sov6s6wmkpg"]
+[gd_scene load_steps=3 format=3 uid="uid://6sov6s6wmkpg"]
+
+[ext_resource type="FontFile" uid="uid://bgbd6ubd40cnv" path="res://fonts/MontserratBlack-3zOvZ.ttf" id="1_g0j3m"]
+[ext_resource type="Script" path="res://control_hud.gd" id="1_rc8pt"]
 
 [node name="ControlHUD" type="CanvasLayer"]
+script = ExtResource("1_rc8pt")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MoneyLabel" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -108.0
+offset_right = 1152.0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("1_g0j3m")
+theme_override_font_sizes/font_size = 32
+text = "   Money: $100"
+vertical_alignment = 1
+
+[node name="QuotaLabel" type="Label" parent="Control"]
+layout_mode = 1
+offset_right = 1148.0
+offset_bottom = 108.0
+theme_override_fonts/font = ExtResource("1_g0j3m")
+theme_override_font_sizes/font_size = 32
+text = "   Quota: 0$/30$"
+vertical_alignment = 1
+
+[node name="TurnLabel" type="Label" parent="Control"]
+layout_mode = 1
+offset_top = 78.0
+offset_right = 1148.0
+offset_bottom = 186.0
+theme_override_fonts/font = ExtResource("1_g0j3m")
+theme_override_font_sizes/font_size = 32
+text = "   Turns Left: 20
+"
+vertical_alignment = 1
+
+[node name="WagerContainer" type="HBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -266.0
+offset_top = 143.0
+offset_right = 267.0
+offset_bottom = 249.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="WagerA" type="Button" parent="Control/WagerContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_next = NodePath("../WagerB")
+focus_previous = NodePath("../WagerC")
+keep_pressed_outside = true
+text = "$1"
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/WagerContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.15
+
+[node name="WagerB" type="Button" parent="Control/WagerContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_next = NodePath("../WagerC")
+focus_previous = NodePath("../WagerA")
+text = "$1"
+
+[node name="MarginContainer2" type="MarginContainer" parent="Control/WagerContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.15
+
+[node name="WagerC" type="Button" parent="Control/WagerContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_next = NodePath("../WagerA")
+focus_previous = NodePath("../WagerB")
+text = "$1"
+
+[connection signal="button_up" from="Control/WagerContainer/WagerA" to="." method="_on_wager_a_button_up"]
