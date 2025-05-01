@@ -2,6 +2,7 @@ extends Node
 
 #Game Variables
 var matchCurr
+@export var matchMax = 10
 
 #What player has, and has to make
 var quotaCurr
@@ -145,6 +146,7 @@ func _next_match(dictCurr):
 	
 func _update_round_display():
 	get_node("ControlHUD/Control/TurnLabel").text = "   Turn: " + str(turnCurr) + "/" + str(turnMax)
+	get_node("ControlHUD/Control/MatchLabel").text = "   Match: " + str(matchCurr) + "/" + str(matchMax)
 	get_node("ControlHUD/Control/QuotaLabel").text = "   Quota: $" + str(quotaCurr) + "/$" + str(quotaMax)
 	get_node("ControlHUD/Control/MoneyLabel").text = "   Money: $" + str(bankCurr)
 	get_node("ControlHUD/Control/CommitTable/Outcome").text = ""
@@ -183,12 +185,12 @@ func _on_compare_delay_timeout():
 	
 
 func _on_round_delay_timeout():
-	if turnCurr >= turnMax:
+	turnCurr += 1
+	if turnCurr > turnMax:
 		bankCurr += quotaCurr - quotaMax
 		matchCurr += 1
 		_next_match(gameDict["Match" + str(matchCurr)])
 		
-	turnCurr += 1
 		
 	get_node("ControlHUD/Control/WagerContainer/WagerA").disabled = false
 	get_node("ControlHUD/Control/WagerContainer/WagerB").disabled = false
