@@ -29,21 +29,34 @@ vertical_alignment = 1
 
 [node name="QuotaLabel" type="Label" parent="Control"]
 layout_mode = 1
+offset_top = 73.0
 offset_right = 1148.0
-offset_bottom = 108.0
+offset_bottom = 181.0
 theme_override_fonts/font = ExtResource("1_g0j3m")
 theme_override_font_sizes/font_size = 32
 text = "   Quota: 0$/30$"
 vertical_alignment = 1
 
-[node name="TurnLabel" type="Label" parent="Control"]
+[node name="RoundLabel" type="Label" parent="Control"]
 layout_mode = 1
-offset_top = 78.0
-offset_right = 1148.0
-offset_bottom = 186.0
+offset_left = -5.0
+offset_top = 5.0
+offset_right = 1143.0
+offset_bottom = 113.0
 theme_override_fonts/font = ExtResource("1_g0j3m")
 theme_override_font_sizes/font_size = 32
-text = "   Turns Left: 20
+text = "    Round: 1/10
+"
+vertical_alignment = 1
+
+[node name="TurnLabel" type="Label" parent="Control"]
+layout_mode = 1
+offset_top = 141.0
+offset_right = 1148.0
+offset_bottom = 249.0
+theme_override_fonts/font = ExtResource("1_g0j3m")
+theme_override_font_sizes/font_size = 32
+text = "   Turn: 1/20
 "
 vertical_alignment = 1
 
@@ -119,7 +132,7 @@ layout_mode = 2
 size_flags_vertical = 6
 theme_override_fonts/font = ExtResource("1_g0j3m")
 theme_override_font_sizes/font_size = 32
-text = "Outcome: ?
+text = "
 "
 
 [node name="WagerChoice" type="Label" parent="Control/CommitTable"]
