@@ -19,6 +19,7 @@ config/icon="res://sprites/thumbnail.png"
 
 start_game="Will activate when the ready button is pressed."
 wager_amount="The player's chosen wager."
+wager_button="Used to toggle buttons on & off"
 
 [gui]
 

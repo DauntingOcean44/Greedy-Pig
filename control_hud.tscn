@@ -62,7 +62,7 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="WagerA" type="Button" parent="Control/WagerContainer"]
+[node name="WagerA" type="Button" parent="Control/WagerContainer" groups=["wager_button"]]
 layout_mode = 2
 size_flags_horizontal = 3
 focus_next = NodePath("../WagerB")
@@ -75,7 +75,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.15
 
-[node name="WagerB" type="Button" parent="Control/WagerContainer"]
+[node name="WagerB" type="Button" parent="Control/WagerContainer" groups=["wager_button"]]
 layout_mode = 2
 size_flags_horizontal = 3
 focus_next = NodePath("../WagerC")
@@ -87,7 +87,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.15
 
-[node name="WagerC" type="Button" parent="Control/WagerContainer"]
+[node name="WagerC" type="Button" parent="Control/WagerContainer" groups=["wager_button"]]
 layout_mode = 2
 size_flags_horizontal = 3
 focus_next = NodePath("../WagerA")
@@ -112,14 +112,14 @@ layout_mode = 2
 size_flags_vertical = 6
 theme_override_fonts/font = ExtResource("1_g0j3m")
 theme_override_font_sizes/font_size = 32
-text = "Veto: $5"
+text = "Veto: ?"
 
 [node name="Outcome" type="Label" parent="Control/CommitTable"]
 layout_mode = 2
 size_flags_vertical = 6
 theme_override_fonts/font = ExtResource("1_g0j3m")
 theme_override_font_sizes/font_size = 32
-text = "Outcome
+text = "Outcome: ?
 "
 
 [node name="WagerChoice" type="Label" parent="Control/CommitTable"]
@@ -127,6 +127,8 @@ layout_mode = 2
 size_flags_vertical = 6
 theme_override_fonts/font = ExtResource("1_g0j3m")
 theme_override_font_sizes/font_size = 32
-text = "Wager: $5"
+text = "Wager: ?"
 
 [connection signal="button_up" from="Control/WagerContainer/WagerA" to="." method="_on_wager_a_button_up"]
+[connection signal="button_up" from="Control/WagerContainer/WagerB" to="." method="_on_wager_b_button_up"]
+[connection signal="button_up" from="Control/WagerContainer/WagerC" to="." method="_on_wager_c_button_up"]
