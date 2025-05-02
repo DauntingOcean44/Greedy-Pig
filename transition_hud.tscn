@@ -1,0 +1,111 @@
+[gd_scene load_steps=6 format=3 uid="uid://bs651cyp6qndu"]
+
+[ext_resource type="FontFile" uid="uid://bgbd6ubd40cnv" path="res://fonts/MontserratBlack-3zOvZ.ttf" id="1_4exvk"]
+[ext_resource type="Script" path="res://transition_hud.gd" id="1_smgfj"]
+[ext_resource type="PackedScene" uid="uid://dp0ep7qbl104n" path="res://dealer.tscn" id="2_1tyf3"]
+[ext_resource type="Theme" uid="uid://57xve3qt6bkm" path="res://themes/panel_container_1.tres" id="3_cg8uf"]
+[ext_resource type="Theme" uid="uid://y2bngix42cpl" path="res://themes/panel_1.tres" id="4_e82ua"]
+
+[node name="TransitionHUD" type="CanvasLayer"]
+script = ExtResource("1_smgfj")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MatchLabel" type="Label" parent="Control/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_4exvk")
+theme_override_font_sizes/font_size = 64
+text = "Match 1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DealerContainer" type="CenterContainer" parent="Control/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Dealer" parent="Control/VBoxContainer/DealerContainer" instance=ExtResource("2_1tyf3")]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/VBoxContainer"]
+layout_mode = 2
+
+[node name="MoneyLabel" type="Label" parent="Control/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 32
+text = "Money: $20"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="QuotaLabel" type="Label" parent="Control/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 32
+text = "Quota: $30
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TurnLabel" type="Label" parent="Control/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 32
+text = "Turns: 20"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="Control/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.75
+theme = ExtResource("3_cg8uf")
+
+[node name="Panel" type="Panel" parent="Control/VBoxContainer/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("4_e82ua")
+
+[node name="MatchContext" type="RichTextLabel" parent="Control/VBoxContainer/PanelContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.75
+theme = ExtResource("3_cg8uf")
+theme_override_font_sizes/normal_font_size = 24
+text = "Bleh bleh bleh, blah blah blah, bleu bleu bleu dawojaopdjaw opdawopdj awopdj djawopawj wjaop awjdop AWOD AJAWDJAWOPDJ AWOPD JAWOPD AWJDOPAWJDJOPJPPJPAOWDJAWOP DJAWOPDJ AWOPDAWJD JAWOPDAWJPOAWJPawpodjawop djwop awjdopawjd awopdjawop djawOPdjPAJWAJDAOPD"
+
+[node name="StartMatchButton" type="Button" parent="Control/VBoxContainer/PanelContainer/Panel"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -149.0
+offset_top = -45.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Next"
+
+[connection signal="button_up" from="Control/VBoxContainer/PanelContainer/Panel/StartMatchButton" to="." method="_on_start_match_button_button_up"]

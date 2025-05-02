@@ -1,15 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://d3g37xxkadgc0"]
+[gd_scene load_steps=5 format=3 uid="uid://d3g37xxkadgc0"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_bwmqv"]
 [ext_resource type="PackedScene" uid="uid://cxy65habuu3ao" path="res://menu_hud.tscn" id="3_l7vqe"]
 [ext_resource type="PackedScene" uid="uid://6sov6s6wmkpg" path="res://control_hud.tscn" id="4_20nyb"]
+[ext_resource type="PackedScene" uid="uid://bs651cyp6qndu" path="res://transition_hud.tscn" id="4_egx5f"]
 
-[node name="Main" type="Node" groups=["start_game", "wager_amount"]]
+[node name="Main" type="Node" groups=["match_button", "start_game", "wager_amount"]]
 script = ExtResource("1_bwmqv")
 
 [node name="MenuHUD" parent="." instance=ExtResource("3_l7vqe")]
 
 [node name="ControlHUD" parent="." instance=ExtResource("4_20nyb")]
+
+[node name="TransitionHUD" parent="." instance=ExtResource("4_egx5f")]
 
 [node name="VetoDelay" type="Timer" parent="."]
 one_shot = true

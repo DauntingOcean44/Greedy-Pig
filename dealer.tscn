@@ -1,42 +1,19 @@
-[gd_scene load_steps=5 format=3 uid="uid://kyo183dtksp2"]
+[gd_scene load_steps=2 format=3 uid="uid://dp0ep7qbl104n"]
 
-[ext_resource type="Texture2D" uid="uid://c1uky1euvdej0" path="res://sprites/dealer/fedora.png" id="1_6272y"]
-[ext_resource type="Texture2D" uid="uid://bf61e3abx3eq1" path="res://sprites/dealer/glasses.png" id="2_2ofsv"]
-[ext_resource type="Texture2D" uid="uid://bl5ftebve047c" path="res://sprites/dealer/left_hand_closed.png" id="3_0u41b"]
-[ext_resource type="Texture2D" uid="uid://mftwfinsumdj" path="res://sprites/dealer/right_hand_closed.png" id="4_x3fxc"]
+[ext_resource type="Texture2D" uid="uid://bmj1jktub48yj" path="res://sprites/dealer/IdleAnimatedDealer/idle1.png" id="1_voy8o"]
 
-[node name="Dealer" type="Node2D"]
+[node name="Dealer" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1152.0
+offset_bottom = -642.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="Fedora" type="Marker2D" parent="."]
-position = Vector2(587, 315)
-metadata/_edit_group_ = true
-
-[node name="Sprite2D" type="Sprite2D" parent="Fedora"]
-position = Vector2(-2, -3)
-scale = Vector2(0.272251, 0.272251)
-texture = ExtResource("1_6272y")
-
-[node name="Glasses" type="Marker2D" parent="."]
-position = Vector2(591, 388)
-
-[node name="Sprite2D" type="Sprite2D" parent="Glasses"]
-scale = Vector2(0.30137, 0.30137)
-texture = ExtResource("2_2ofsv")
-
-[node name="LeftHand" type="Marker2D" parent="."]
-position = Vector2(751, 431)
-metadata/_edit_group_ = true
-
-[node name="Sprite2D" type="Sprite2D" parent="LeftHand"]
-position = Vector2(1.52588e-05, 4)
-scale = Vector2(0.212555, 0.212555)
-texture = ExtResource("3_0u41b")
-
-[node name="RightHand" type="Marker2D" parent="."]
-position = Vector2(435, 436)
-metadata/_edit_group_ = true
-
-[node name="Sprite2D" type="Sprite2D" parent="RightHand"]
-position = Vector2(0, 1.52588e-05)
-scale = Vector2(0.209251, 0.209251)
-texture = ExtResource("4_x3fxc")
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -3
+position = Vector2(2, 5.00006)
+scale = Vector2(0.291111, 0.291111)
+texture = ExtResource("1_voy8o")

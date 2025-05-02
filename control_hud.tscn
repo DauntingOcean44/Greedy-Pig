@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://6sov6s6wmkpg"]
+[gd_scene load_steps=4 format=3 uid="uid://6sov6s6wmkpg"]
 
 [ext_resource type="FontFile" uid="uid://bgbd6ubd40cnv" path="res://fonts/MontserratBlack-3zOvZ.ttf" id="1_g0j3m"]
 [ext_resource type="Script" path="res://control_hud.gd" id="1_rc8pt"]
+[ext_resource type="PackedScene" uid="uid://dp0ep7qbl104n" path="res://dealer.tscn" id="3_m4jfn"]
 
 [node name="ControlHUD" type="CanvasLayer"]
 script = ExtResource("1_rc8pt")
@@ -139,6 +140,28 @@ size_flags_vertical = 6
 theme_override_fonts/font = ExtResource("1_g0j3m")
 theme_override_font_sizes/font_size = 32
 text = "Wager: ?"
+
+[node name="DealerLayer" type="CanvasLayer" parent="."]
+layer = -3
+
+[node name="Control" type="Control" parent="DealerLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="DealerLayer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Dealer" parent="DealerLayer/Control/CenterContainer" instance=ExtResource("3_m4jfn")]
+layout_mode = 2
 
 [connection signal="button_up" from="Control/WagerContainer/WagerA" to="." method="_on_wager_a_button_up"]
 [connection signal="button_up" from="Control/WagerContainer/WagerB" to="." method="_on_wager_b_button_up"]
