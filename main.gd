@@ -59,7 +59,7 @@ var gameDict = {
 		"VetoB": [3, 7],
 		"VetoC": [5, 13],
 		
-		"Context": ["Lets play a little game.", "There are " + str(matchMax) + " matches.", "And a certain amount of turns per match.", "Each Match has a quota. If you fall short, you pay out of pocket to cover the difference. If you exceed the quota, I add that money to your account.", "That quota can be reached by choosing a wager.", "Successful wagers are added to the quota.", "Vetoed wagers are not.", "Whenever you choose a wager, I choose a veto. Neither of us will know what the other picked.", "It's all chance\n...Predictable chance.", "I have a fixed amount of vetoes to choose from. In my hat, of course.", "Everytime I choose a veto, it gets used once, and then discarded. Take that as you will.", "Veto OUTCOMES:\n$5 Vetoes | x13\n$3 Vetoes | x7"]
+		"Context": ["Lets play a little game.", "There are " + str(matchMax) + " matches.", "And a certain amount of turns per match.", "Each Match has a quota. If you fall short, you pay out of pocket to cover the difference. If you exceed the quota, I add that money to your account.", "That quota can be reached by choosing a wager.", "Successful wagers are added to the quota.", "Vetoed wagers are not.", "Whenever you choose a wager, I choose a veto. Neither of us will know what the other picked.", "It's all chance.\n...Predictable chance.", "I have a fixed amount of vetoes to choose from. In my hat, of course.", "Each veto has a set chance of occuring.", "Veto CHANCES:\n$1 | 0%\n$3 | 35%\n$5 | 65%"]
 	},
 	"Match2": {
 		"Quota": 33,
@@ -74,7 +74,7 @@ var gameDict = {
 		"VetoB": [3, 6],
 		"VetoC": [4, 9],
 		
-		"Context": ["It's only going to get more challenging from here.", "Veto OUTCOMES:\n$5 Vetoes | x13\n$3 Vetoes | x6\n$4 Vetoes | x9"]
+		"Context": ["It's only going to get more challenging from here.", "Veto CHANCES:\n$2 | 17%\n$3 | 34%\n$4 | 50%"]
 	}
 }
 
@@ -91,20 +91,20 @@ func _random_weighted(array):
 	currIndex += vetoArray[1]
 	if currIndex >= randomIndex:
 		vetoData = vetoArray[0]
-		array[1] -= 1
+		#array[1] -= 1
 		return vetoData
 	
 	
 	currIndex += vetoArray[3]
 	if currIndex >= randomIndex:
 		vetoData = vetoArray[2]
-		array[3] -= 1
+		#array[3] -= 1
 		return vetoData
 		
 	currIndex += vetoArray[5]
 	if currIndex >= randomIndex:
 		vetoData = vetoArray[4]
-		array[5] -= 1
+		#array[5] -= 1
 		return vetoData
 		
 			
@@ -126,7 +126,6 @@ func _instance_game():
 	$MenuHUD.hide()
 	$TransitionHUD.show()
 	_update_context_display()
-	print("WORKS!")
 	
 	
 #When the next match occurs
@@ -150,7 +149,6 @@ func _next_match(dictCurr):
 	contextArray.clear()
 	for i in range(dictCurr["Context"].size()):
 		contextArray.append(dictCurr["Context"][i])
-		print (contextArray[i])
 	
 	get_node("ControlHUD")._assign_wagers(wagerA, wagerB, wagerC)
 	
@@ -190,8 +188,6 @@ func _cast_wager(amount):
 	
 func _press_match_button():
 	contextCurr += 1
-	print("Curr: " + str(contextCurr))
-	print("Size: " + str(contextArray.size()))
 	#Start match when all text is read
 	if contextCurr == contextArray.size():
 		$ControlHUD.show()

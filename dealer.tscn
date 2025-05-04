@@ -1,6 +1,62 @@
-[gd_scene load_steps=2 format=3 uid="uid://dp0ep7qbl104n"]
+[gd_scene load_steps=15 format=3 uid="uid://dp0ep7qbl104n"]
 
+[ext_resource type="Script" path="res://dealer.gd" id="1_h553i"]
 [ext_resource type="Texture2D" uid="uid://bmj1jktub48yj" path="res://sprites/dealer/IdleAnimatedDealer/idle1.png" id="1_voy8o"]
+[ext_resource type="Texture2D" uid="uid://cu7p5cvf2ojx1" path="res://sprites/dealer/IdleAnimatedDealer/idle2.png" id="2_soaiy"]
+[ext_resource type="Texture2D" uid="uid://j6d48b3tvpnv" path="res://sprites/dealer/IdleAnimatedDealer/idle3.png" id="3_y0ap1"]
+[ext_resource type="Texture2D" uid="uid://ckjbw30siia58" path="res://sprites/dealer/IdleAnimatedDealer/idle4.png" id="4_vlxf6"]
+[ext_resource type="Texture2D" uid="uid://bgt3q2rfc2r2m" path="res://sprites/dealer/IdleAnimatedDealer/idle5.png" id="5_37iuc"]
+[ext_resource type="Texture2D" uid="uid://0bsa8org0ibe" path="res://sprites/dealer/IdleAnimatedDealer/idle6.png" id="6_gtp2b"]
+[ext_resource type="Texture2D" uid="uid://byecv80pihgdy" path="res://sprites/dealer/IdleAnimatedDealer/idle7.png" id="7_7lhr6"]
+[ext_resource type="Texture2D" uid="uid://dqf2s88ewf7nt" path="res://sprites/dealer/IdleAnimatedDealer/idle8.png" id="8_adibm"]
+[ext_resource type="Texture2D" uid="uid://bp5ruefn3epxl" path="res://sprites/dealer/IdleAnimatedDealer/idle9.png" id="9_ku45d"]
+[ext_resource type="Texture2D" uid="uid://2m8lrix78vp3" path="res://sprites/dealer/IdleAnimatedDealer/idle10.png" id="10_6a87v"]
+[ext_resource type="Texture2D" uid="uid://dlskd404bp2na" path="res://sprites/dealer/IdleAnimatedDealer/idle11.png" id="11_2mh83"]
+[ext_resource type="Texture2D" uid="uid://dp1tt3erctyvx" path="res://sprites/dealer/IdleAnimatedDealer/idle12.png" id="12_0yfmm"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_j6rag"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_voy8o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_soaiy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_y0ap1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_vlxf6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_37iuc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_gtp2b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_7lhr6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_adibm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_ku45d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_6a87v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_2mh83")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_0yfmm")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Dealer" type="Control"]
 layout_mode = 3
@@ -11,9 +67,11 @@ offset_right = -1152.0
 offset_bottom = -642.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_h553i")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 z_index = -3
 position = Vector2(2, 5.00006)
 scale = Vector2(0.291111, 0.291111)
-texture = ExtResource("1_voy8o")
+sprite_frames = SubResource("SpriteFrames_j6rag")
+frame_progress = 0.404312
