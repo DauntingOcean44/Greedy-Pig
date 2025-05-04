@@ -9,8 +9,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	pass
-
-
-func _on_start_button_up() -> void:
-	get_tree().call_group("start_game", "_instance_game")
 	
+	
+func _on_start_game_button_up():
+	get_tree().call_group("start_game", "_instance_game")

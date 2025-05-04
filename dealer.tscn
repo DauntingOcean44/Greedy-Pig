@@ -74,4 +74,4 @@ z_index = -3
 position = Vector2(2, 5.00006)
 scale = Vector2(0.291111, 0.291111)
 sprite_frames = SubResource("SpriteFrames_j6rag")
-frame_progress = 0.404312
+frame_progress = 0.447298

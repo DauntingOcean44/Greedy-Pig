@@ -1,0 +1,65 @@
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://bxoevn71lb7ru"]
+
+[ext_resource type="StyleBox" uid="uid://brov1508hx5sf" path="res://themes/menu_style_box_flat.tres" id="1_j5oqo"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s4j7p"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.207843, 0.227451, 0.278431, 1)
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_de1np"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rtlmx"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.207843, 0.227451, 0.278431, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_voxf5"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.695503, 0.695503, 0.695503, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[resource]
+Button/font_sizes/font_size = 32
+Button/styles/focus = SubResource("StyleBoxFlat_s4j7p")
+Button/styles/hover = SubResource("StyleBoxFlat_de1np")
+Button/styles/normal = SubResource("StyleBoxFlat_rtlmx")
+Button/styles/pressed = SubResource("StyleBoxFlat_voxf5")
+Label/colors/font_color = Color(0.207843, 0.227451, 0.278431, 1)
+Label/colors/font_outline_color = Color(0, 0, 0, 1)
+Label/colors/font_shadow_color = Color(0, 0, 0, 0)
+Label/font_sizes/font_size = 64
+Label/fonts/font = null
+PanelContainer/styles/panel = ExtResource("1_j5oqo")

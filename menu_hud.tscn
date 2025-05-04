@@ -1,16 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://cxy65habuu3ao"]
+[gd_scene load_steps=3 format=3 uid="uid://cxy65habuu3ao"]
 
 [ext_resource type="Script" path="res://menu_hud.gd" id="1_5r7t4"]
-[ext_resource type="FontFile" uid="uid://bgbd6ubd40cnv" path="res://fonts/MontserratBlack-3zOvZ.ttf" id="1_dr5i3"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xfwnx"]
-bg_color = Color(0, 1, 0, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8d0bw"]
-bg_color = Color(0.207843, 0.368627, 0.231373, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_quwss"]
-bg_color = Color(0.298039, 0.733333, 0.0901961, 1)
+[ext_resource type="Theme" uid="uid://bxoevn71lb7ru" path="res://themes/menu_panel_container.tres" id="2_irq0w"]
 
 [node name="MenuHUD" type="CanvasLayer"]
 script = ExtResource("1_5r7t4")
@@ -23,40 +14,32 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TitleLabel" type="Label" parent="Control"]
+[node name="CenterContainer" type="CenterContainer" parent="Control"]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -460.5
-offset_right = 460.5
-offset_bottom = 160.0
-grow_horizontal = 2
-theme_override_fonts/font = ExtResource("1_dr5i3")
-theme_override_font_sizes/font_size = 64
-text = "GreedyPig"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="StartButton" type="Button" parent="Control"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -129.5
-offset_top = -42.0
-offset_right = 129.5
-offset_bottom = 42.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("1_dr5i3")
-theme_override_font_sizes/font_size = 32
-theme_override_styles/hover = SubResource("StyleBoxFlat_xfwnx")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_8d0bw")
-theme_override_styles/normal = SubResource("StyleBoxFlat_quwss")
-keep_pressed_outside = true
+
+[node name="PanelContainer" type="PanelContainer" parent="Control/CenterContainer"]
+layout_mode = 2
+theme = ExtResource("2_irq0w")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/CenterContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/CenterContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Main Menu"
+horizontal_alignment = 1
+
+[node name="StartGame" type="Button" parent="Control/CenterContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
 text = "Start Game"
 
-[connection signal="button_up" from="Control/StartButton" to="." method="_on_start_button_up"]
+[node name="StartTrials" type="Button" parent="Control/CenterContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Trials"
+
+[connection signal="button_up" from="Control/CenterContainer/PanelContainer/VBoxContainer/StartGame" to="." method="_on_start_game_button_up"]
