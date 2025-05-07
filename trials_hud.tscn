@@ -1,0 +1,87 @@
+[gd_scene load_steps=3 format=3 uid="uid://nye367j8trk6"]
+
+[ext_resource type="Theme" uid="uid://dv8kqrq4wobpt" path="res://themes/trials_style.tres" id="1_8qljq"]
+[ext_resource type="PackedScene" uid="uid://y04kovox6ja6" path="res://trials_content.tscn" id="2_7jg4y"]
+
+[node name="TrialsHUD" type="CanvasLayer"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TabContainer" type="TabContainer" parent="Control"]
+z_index = 10
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_8qljq")
+current_tab = 0
+
+[node name="Match 1" type="TabBar" parent="Control/TabContainer"]
+layout_mode = 2
+focus_mode = 0
+metadata/_tab_index = 0
+
+[node name="trials_content" parent="Control/TabContainer/Match 1" instance=ExtResource("2_7jg4y")]
+layout_mode = 1
+
+[node name="Match 2" type="TabBar" parent="Control/TabContainer"]
+visible = false
+layout_mode = 2
+focus_mode = 0
+metadata/_tab_index = 1
+
+[node name="Match 3" type="TabBar" parent="Control/TabContainer"]
+visible = false
+layout_mode = 2
+focus_mode = 0
+metadata/_tab_index = 2
+
+[node name="Match 4" type="TabBar" parent="Control/TabContainer"]
+visible = false
+layout_mode = 2
+focus_mode = 0
+metadata/_tab_index = 3
+
+[node name="Match 5" type="TabBar" parent="Control/TabContainer"]
+visible = false
+layout_mode = 2
+focus_mode = 0
+metadata/_tab_index = 4
+
+[node name="Match 6" type="TabBar" parent="Control/TabContainer"]
+visible = false
+layout_mode = 2
+focus_mode = 0
+metadata/_tab_index = 5
+
+[node name="Match 7" type="TabBar" parent="Control/TabContainer"]
+visible = false
+layout_mode = 2
+focus_mode = 0
+metadata/_tab_index = 6
+
+[node name="Match 8" type="TabBar" parent="Control/TabContainer"]
+visible = false
+layout_mode = 2
+focus_mode = 0
+metadata/_tab_index = 7
+
+[node name="Match 9" type="TabBar" parent="Control/TabContainer"]
+visible = false
+layout_mode = 2
+focus_mode = 0
+metadata/_tab_index = 8
+
+[node name="Match 10" type="TabBar" parent="Control/TabContainer"]
+visible = false
+layout_mode = 2
+focus_mode = 0
+metadata/_tab_index = 9
