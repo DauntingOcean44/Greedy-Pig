@@ -37,9 +37,11 @@ border_width_top = 2
 border_width_right = 2
 
 [resource]
+HBoxContainer/constants/separation = 24
 TabContainer/font_sizes/font_size = 18
 TabContainer/styles/panel = SubResource("StyleBoxFlat_6x0k1")
 TabContainer/styles/tab_focus = SubResource("StyleBoxFlat_bnvxs")
 TabContainer/styles/tab_hovered = SubResource("StyleBoxFlat_kx30j")
 TabContainer/styles/tab_selected = SubResource("StyleBoxFlat_y1sjo")
 TabContainer/styles/tab_unselected = SubResource("StyleBoxFlat_kmklq")
+VBoxContainer/constants/separation = 24

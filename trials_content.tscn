@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://y04kovox6ja6"]
+[gd_scene load_steps=2 format=3 uid="uid://y04kovox6ja6"]
+
+[ext_resource type="Theme" uid="uid://dv8kqrq4wobpt" path="res://themes/trials_style.tres" id="1_pha0k"]
 
 [node name="trials_content" type="Control"]
 layout_mode = 3
@@ -18,6 +20,50 @@ grow_vertical = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="CenterContainer"]
 layout_mode = 2
+theme = ExtResource("1_pha0k")
 
-[node name="GridContainer" type="GridContainer" parent="CenterContainer/PanelContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/PanelContainer"]
 layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="SelectWagerLabel" type="Label" parent="CenterContainer/PanelContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "SelectWager"
+
+[node name="VetoChancesLabel" type="Label" parent="CenterContainer/PanelContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "VetoChances"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CenterContainer/PanelContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="QuotaGraphLabel" type="Label" parent="CenterContainer/PanelContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "Quota Outcomes"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/PanelContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/HBoxContainer/VBoxContainer2/HBoxContainer"]
+layout_mode = 2
+
+[node name="BinWidthLabel" type="Label" parent="CenterContainer/PanelContainer/HBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Bin Width"
+
+[node name="TrialsLabel" type="Label" parent="CenterContainer/PanelContainer/HBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Trials"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CenterContainer/PanelContainer/HBoxContainer/VBoxContainer2/HBoxContainer"]
+layout_mode = 2
+
+[node name="AverageVLabel" type="Label" parent="CenterContainer/PanelContainer/HBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "Average Value"
+
+[node name="ExpectedQLabel" type="Label" parent="CenterContainer/PanelContainer/HBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "Expected Quota"
