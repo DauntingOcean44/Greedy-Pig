@@ -21,26 +21,144 @@ grow_vertical = 2
 [node name="PanelContainer" type="PanelContainer" parent="CenterContainer"]
 layout_mode = 2
 theme = ExtResource("1_pha0k")
+theme_type_variation = &"ParentPanelContainer"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/PanelContainer"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/HBoxContainer"]
+[node name="Control" type="Control" parent="CenterContainer/PanelContainer/HBoxContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(300, 300)
 layout_mode = 2
 
-[node name="SelectWagerLabel" type="Label" parent="CenterContainer/PanelContainer/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-text = "SelectWager"
+[node name="CenterContainer" type="CenterContainer" parent="CenterContainer/PanelContainer/HBoxContainer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="VetoChancesLabel" type="Label" parent="CenterContainer/PanelContainer/HBoxContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer"]
 layout_mode = 2
-text = "VetoChances"
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"ChildPanelContainer"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="VetoChancesLabel" type="Label" parent="CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"Title"
+text = "Veto Chances"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer/VBoxContainer/CenterContainer"]
+layout_mode = 2
+theme_type_variation = &"ChildPanelContainer"
+
+[node name="GridContainer" type="GridContainer" parent="CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer/VBoxContainer/CenterContainer/PanelContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="Value" type="Label" parent="CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer/VBoxContainer/CenterContainer/PanelContainer/GridContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+theme_type_variation = &"Subtitle"
+text = "Value"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Chance" type="Label" parent="CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer/VBoxContainer/CenterContainer/PanelContainer/GridContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+text = "Chance"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Value1" type="Label" parent="CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer/VBoxContainer/CenterContainer/PanelContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+theme = ExtResource("1_pha0k")
+theme_type_variation = &"Immutable"
+text = "$1
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Chance1" type="Label" parent="CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer/VBoxContainer/CenterContainer/PanelContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+theme = ExtResource("1_pha0k")
+theme_type_variation = &"Immutable"
+text = "0%
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Value2" type="Label" parent="CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer/VBoxContainer/CenterContainer/PanelContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+theme = ExtResource("1_pha0k")
+theme_type_variation = &"Immutable"
+text = "$3
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Chance2" type="Label" parent="CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer/VBoxContainer/CenterContainer/PanelContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+theme = ExtResource("1_pha0k")
+theme_type_variation = &"Immutable"
+text = "35%"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Value3" type="Label" parent="CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer/VBoxContainer/CenterContainer/PanelContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+theme = ExtResource("1_pha0k")
+theme_type_variation = &"Immutable"
+text = "$5"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Chance3" type="Label" parent="CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer/VBoxContainer/CenterContainer/PanelContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+theme = ExtResource("1_pha0k")
+theme_type_variation = &"Immutable"
+text = "65%
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SelectWagerLabel" type="Label" parent="CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"Title"
+text = "Select Wager"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="CenterContainer/PanelContainer/HBoxContainer"]
 layout_mode = 2
 
 [node name="QuotaGraphLabel" type="Label" parent="CenterContainer/PanelContainer/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
+theme_type_variation = &"Title"
 text = "Quota Outcomes"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/PanelContainer/HBoxContainer/VBoxContainer2"]
@@ -51,10 +169,12 @@ layout_mode = 2
 
 [node name="BinWidthLabel" type="Label" parent="CenterContainer/PanelContainer/HBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer"]
 layout_mode = 2
+theme_type_variation = &"Subtitle"
 text = "Bin Width"
 
 [node name="TrialsLabel" type="Label" parent="CenterContainer/PanelContainer/HBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer"]
 layout_mode = 2
+theme_type_variation = &"Subtitle"
 text = "Trials"
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="CenterContainer/PanelContainer/HBoxContainer/VBoxContainer2/HBoxContainer"]
@@ -62,8 +182,10 @@ layout_mode = 2
 
 [node name="AverageVLabel" type="Label" parent="CenterContainer/PanelContainer/HBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
+theme_type_variation = &"Subtitle"
 text = "Average Value"
 
 [node name="ExpectedQLabel" type="Label" parent="CenterContainer/PanelContainer/HBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
+theme_type_variation = &"Subtitle"
 text = "Expected Quota"

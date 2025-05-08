@@ -1,4 +1,29 @@
-[gd_resource type="Theme" load_steps=6 format=3 uid="uid://dv8kqrq4wobpt"]
+[gd_resource type="Theme" load_steps=9 format=3 uid="uid://dv8kqrq4wobpt"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k5jc6"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.25098, 0.47451, 0.54902, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vt3ft"]
+content_margin_left = 30.0
+content_margin_top = 5.0
+content_margin_right = 30.0
+content_margin_bottom = 5.0
+bg_color = Color(0.0431373, 0.12549, 0.152941, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i5sth"]
+content_margin_left = 30.0
+content_margin_top = 30.0
+content_margin_right = 30.0
+content_margin_bottom = 30.0
+bg_color = Color(0.0431373, 0.12549, 0.152941, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6x0k1"]
 bg_color = Color(0.0431373, 0.12549, 0.152941, 1)
@@ -37,11 +62,22 @@ border_width_top = 2
 border_width_right = 2
 
 [resource]
+ChildPanelContainer/base_type = &"PanelContainer"
+ChildPanelContainer/styles/panel = SubResource("StyleBoxFlat_k5jc6")
 HBoxContainer/constants/separation = 24
+Immutable/base_type = &"Label"
+Immutable/colors/font_color = Color(1, 1, 1, 1)
+Immutable/colors/font_outline_color = Color(1, 1, 1, 1)
+Immutable/styles/normal = SubResource("StyleBoxFlat_vt3ft")
+Mutable/base_type = &"Label"
+ParentPanelContainer/base_type = &"PanelContainer"
+ParentPanelContainer/styles/panel = SubResource("StyleBoxFlat_i5sth")
 TabContainer/font_sizes/font_size = 18
 TabContainer/styles/panel = SubResource("StyleBoxFlat_6x0k1")
 TabContainer/styles/tab_focus = SubResource("StyleBoxFlat_bnvxs")
 TabContainer/styles/tab_hovered = SubResource("StyleBoxFlat_kx30j")
 TabContainer/styles/tab_selected = SubResource("StyleBoxFlat_y1sjo")
 TabContainer/styles/tab_unselected = SubResource("StyleBoxFlat_kmklq")
-VBoxContainer/constants/separation = 24
+Title/base_type = &"Label"
+Title/font_sizes/font_size = 24
+VBoxContainer/constants/separation = 12
