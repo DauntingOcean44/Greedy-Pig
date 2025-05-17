@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=9 format=3 uid="uid://dv8kqrq4wobpt"]
+[gd_resource type="Theme" load_steps=11 format=3 uid="uid://dv8kqrq4wobpt"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k5jc6"]
 content_margin_left = 10.0
@@ -17,6 +17,20 @@ content_margin_top = 5.0
 content_margin_right = 30.0
 content_margin_bottom = 5.0
 bg_color = Color(0.0431373, 0.12549, 0.152941, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rxuk6"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.439216, 0.662745, 0.631373, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ewae8"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.439216, 0.662745, 0.631373, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i5sth"]
 content_margin_left = 30.0
@@ -70,8 +84,13 @@ Immutable/colors/font_color = Color(1, 1, 1, 1)
 Immutable/colors/font_outline_color = Color(1, 1, 1, 1)
 Immutable/styles/normal = SubResource("StyleBoxFlat_vt3ft")
 Mutable/base_type = &"Label"
+Mutable/styles/normal = SubResource("StyleBoxFlat_rxuk6")
+PanelContainerSlider/base_type = &"PanelContainer"
+PanelContainerSlider/styles/panel = SubResource("StyleBoxFlat_ewae8")
 ParentPanelContainer/base_type = &"PanelContainer"
 ParentPanelContainer/styles/panel = SubResource("StyleBoxFlat_i5sth")
+SuperTitle/base_type = &"Label"
+SuperTitle/font_sizes/font_size = 32
 TabContainer/font_sizes/font_size = 18
 TabContainer/styles/panel = SubResource("StyleBoxFlat_6x0k1")
 TabContainer/styles/tab_focus = SubResource("StyleBoxFlat_bnvxs")

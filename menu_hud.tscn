@@ -42,4 +42,8 @@ text = "Start Game"
 layout_mode = 2
 text = "Trials"
 
+[node name="StartRoulette" type="Button" parent="Control/CenterContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Roulette Wheel"
+
 [connection signal="button_up" from="Control/CenterContainer/PanelContainer/VBoxContainer/StartGame" to="." method="_on_start_game_button_up"]

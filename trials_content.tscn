@@ -15,6 +15,7 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = 36.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -27,8 +28,7 @@ theme_type_variation = &"ParentPanelContainer"
 layout_mode = 2
 
 [node name="Control" type="Control" parent="CenterContainer/PanelContainer/HBoxContainer"]
-clip_contents = true
-custom_minimum_size = Vector2(300, 300)
+custom_minimum_size = Vector2(500, 500)
 layout_mode = 2
 
 [node name="CenterContainer" type="CenterContainer" parent="CenterContainer/PanelContainer/HBoxContainer/Control"]
@@ -83,6 +83,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Value1" type="Label" parent="CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer/VBoxContainer/CenterContainer/PanelContainer/GridContainer"]
+custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
@@ -94,6 +95,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Chance1" type="Label" parent="CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer/VBoxContainer/CenterContainer/PanelContainer/GridContainer"]
+custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
@@ -105,6 +107,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Value2" type="Label" parent="CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer/VBoxContainer/CenterContainer/PanelContainer/GridContainer"]
+custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
@@ -116,6 +119,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Chance2" type="Label" parent="CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer/VBoxContainer/CenterContainer/PanelContainer/GridContainer"]
+custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
@@ -126,6 +130,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Value3" type="Label" parent="CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer/VBoxContainer/CenterContainer/PanelContainer/GridContainer"]
+custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
@@ -136,6 +141,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Chance3" type="Label" parent="CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer/VBoxContainer/CenterContainer/PanelContainer/GridContainer"]
+custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
@@ -146,46 +152,229 @@ text = "65%
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="SelectWagerLabel" type="Label" parent="CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer"]
+[node name="PanelContainer2" type="PanelContainer" parent="CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"ChildPanelContainer"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer2"]
+layout_mode = 2
+
+[node name="SelectWagerLabel" type="Label" parent="CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer2/VBoxContainer"]
 layout_mode = 2
 theme_type_variation = &"Title"
 text = "Select Wager"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="CenterContainer/PanelContainer/HBoxContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer2/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"PanelContainerSlider"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer2/VBoxContainer/PanelContainer"]
 layout_mode = 2
 
-[node name="QuotaGraphLabel" type="Label" parent="CenterContainer/PanelContainer/HBoxContainer/VBoxContainer2"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer2/VBoxContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="MoneyA" type="Label" parent="CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer2/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+theme_type_variation = &"Immutable"
+text = "$1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control" type="Control" parent="CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer2/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+
+[node name="SliderA" type="HSlider" parent="CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer2/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AmountA" type="Label" parent="CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer2/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+theme_type_variation = &"Immutable"
+text = "x5"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer2/VBoxContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="MoneyB" type="Label" parent="CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer2/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+theme_type_variation = &"Immutable"
+text = "$3
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control" type="Control" parent="CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer2/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+
+[node name="SliderB" type="HSlider" parent="CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer2/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer2/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AmountB" type="Label" parent="CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer2/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+theme_type_variation = &"Immutable"
+text = "x5"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer2/VBoxContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="MoneyC" type="Label" parent="CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer2/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer3"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+theme_type_variation = &"Immutable"
+text = "$5
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control" type="Control" parent="CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer2/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer3"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+
+[node name="SliderC" type="HSlider" parent="CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer2/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer3/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AmountC" type="Label" parent="CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer2/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer3"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+theme_type_variation = &"Immutable"
+text = "x5"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Outcomes" type="Control" parent="CenterContainer/PanelContainer/HBoxContainer"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="CenterContainer/PanelContainer/HBoxContainer/Outcomes"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CenterContainer/PanelContainer/HBoxContainer/Outcomes/CenterContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="CenterContainer/PanelContainer/HBoxContainer/Outcomes/CenterContainer/VBoxContainer2"]
 layout_mode = 2
 theme_type_variation = &"Title"
 text = "Quota Outcomes"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/PanelContainer/HBoxContainer/VBoxContainer2"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/PanelContainer/HBoxContainer/Outcomes/CenterContainer/VBoxContainer2"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/HBoxContainer/VBoxContainer2/HBoxContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer/PanelContainer/HBoxContainer/Outcomes/CenterContainer/VBoxContainer2/HBoxContainer2"]
+layout_mode = 2
+theme_type_variation = &"ChildPanelContainer"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CenterContainer/PanelContainer/HBoxContainer/Outcomes/CenterContainer/VBoxContainer2/HBoxContainer2/PanelContainer"]
 layout_mode = 2
 
-[node name="BinWidthLabel" type="Label" parent="CenterContainer/PanelContainer/HBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/PanelContainer/HBoxContainer/Outcomes/CenterContainer/VBoxContainer2/HBoxContainer2/PanelContainer/VBoxContainer2"]
+layout_mode = 2
+
+[node name="BinWidthLabel" type="Label" parent="CenterContainer/PanelContainer/HBoxContainer/Outcomes/CenterContainer/VBoxContainer2/HBoxContainer2/PanelContainer/VBoxContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 theme_type_variation = &"Subtitle"
-text = "Bin Width"
+text = "Bin Width: "
 
-[node name="TrialsLabel" type="Label" parent="CenterContainer/PanelContainer/HBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer"]
+[node name="BinAmount" type="Label" parent="CenterContainer/PanelContainer/HBoxContainer/Outcomes/CenterContainer/VBoxContainer2/HBoxContainer2/PanelContainer/VBoxContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme_type_variation = &"Mutable"
+text = "5"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/HBoxContainer/Outcomes/CenterContainer/VBoxContainer2/HBoxContainer2/PanelContainer/VBoxContainer2"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/PanelContainer/HBoxContainer/Outcomes/CenterContainer/VBoxContainer2/HBoxContainer2/PanelContainer/VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+
+[node name="BinWidthLabel" type="Label" parent="CenterContainer/PanelContainer/HBoxContainer/Outcomes/CenterContainer/VBoxContainer2/HBoxContainer2/PanelContainer/VBoxContainer2/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 theme_type_variation = &"Subtitle"
-text = "Trials"
+text = "Trials:"
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="CenterContainer/PanelContainer/HBoxContainer/VBoxContainer2/HBoxContainer"]
+[node name="BinAmount" type="Label" parent="CenterContainer/PanelContainer/HBoxContainer/Outcomes/CenterContainer/VBoxContainer2/HBoxContainer2/PanelContainer/VBoxContainer2/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme_type_variation = &"Mutable"
+text = "5"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PanelContainer2" type="PanelContainer" parent="CenterContainer/PanelContainer/HBoxContainer/Outcomes/CenterContainer/VBoxContainer2/HBoxContainer2"]
+layout_mode = 2
+theme_type_variation = &"ChildPanelContainer"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CenterContainer/PanelContainer/HBoxContainer/Outcomes/CenterContainer/VBoxContainer2/HBoxContainer2/PanelContainer2"]
 layout_mode = 2
 
-[node name="AverageVLabel" type="Label" parent="CenterContainer/PanelContainer/HBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer2"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/PanelContainer/HBoxContainer/Outcomes/CenterContainer/VBoxContainer2/HBoxContainer2/PanelContainer2/VBoxContainer2"]
+layout_mode = 2
+
+[node name="BinWidthLabel" type="Label" parent="CenterContainer/PanelContainer/HBoxContainer/Outcomes/CenterContainer/VBoxContainer2/HBoxContainer2/PanelContainer2/VBoxContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 theme_type_variation = &"Subtitle"
-text = "Average Value"
+text = "Avg. Value: "
 
-[node name="ExpectedQLabel" type="Label" parent="CenterContainer/PanelContainer/HBoxContainer/VBoxContainer2/HBoxContainer/VBoxContainer2"]
+[node name="BinAmount" type="Label" parent="CenterContainer/PanelContainer/HBoxContainer/Outcomes/CenterContainer/VBoxContainer2/HBoxContainer2/PanelContainer2/VBoxContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme_type_variation = &"Immutable"
+text = "5"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/HBoxContainer/Outcomes/CenterContainer/VBoxContainer2/HBoxContainer2/PanelContainer2/VBoxContainer2"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/PanelContainer/HBoxContainer/Outcomes/CenterContainer/VBoxContainer2/HBoxContainer2/PanelContainer2/VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+
+[node name="BinWidthLabel" type="Label" parent="CenterContainer/PanelContainer/HBoxContainer/Outcomes/CenterContainer/VBoxContainer2/HBoxContainer2/PanelContainer2/VBoxContainer2/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 theme_type_variation = &"Subtitle"
-text = "Expected Quota"
+text = "Avg. Quota:"
+
+[node name="BinAmount" type="Label" parent="CenterContainer/PanelContainer/HBoxContainer/Outcomes/CenterContainer/VBoxContainer2/HBoxContainer2/PanelContainer2/VBoxContainer2/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme_type_variation = &"Immutable"
+text = "5"
+horizontal_alignment = 1
+vertical_alignment = 1
