@@ -13,3 +13,7 @@ func _process(_delta: float) -> void:
 	
 func _on_start_game_button_up():
 	get_tree().call_group("start_game", "_instance_game")
+	
+
+func _on_start_roulette_button_up():
+	get_tree().call_group("start_game", "_roulette_screen")

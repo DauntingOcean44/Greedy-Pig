@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://d3g37xxkadgc0"]
+[gd_scene load_steps=7 format=3 uid="uid://d3g37xxkadgc0"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_bwmqv"]
 [ext_resource type="PackedScene" uid="uid://cxy65habuu3ao" path="res://menu_hud.tscn" id="3_l7vqe"]
 [ext_resource type="PackedScene" uid="uid://6sov6s6wmkpg" path="res://control_hud.tscn" id="4_20nyb"]
 [ext_resource type="PackedScene" uid="uid://bs651cyp6qndu" path="res://transition_hud.tscn" id="4_egx5f"]
+[ext_resource type="PackedScene" uid="uid://bdvs6cc6u4uj6" path="res://roulette_hud.tscn" id="5_prr68"]
+[ext_resource type="PackedScene" uid="uid://nye367j8trk6" path="res://trials_hud.tscn" id="6_nfkyc"]
 
 [node name="Main" type="Node" groups=["match_button", "start_game", "wager_amount"]]
 script = ExtResource("1_bwmqv")
@@ -22,6 +24,10 @@ one_shot = true
 
 [node name="RoundDelay" type="Timer" parent="."]
 one_shot = true
+
+[node name="RouletteHud" parent="." instance=ExtResource("5_prr68")]
+
+[node name="TrialsHUD" parent="." instance=ExtResource("6_nfkyc")]
 
 [connection signal="timeout" from="VetoDelay" to="." method="_on_veto_delay_timeout"]
 [connection signal="timeout" from="CompareDelay" to="." method="_on_compare_delay_timeout"]

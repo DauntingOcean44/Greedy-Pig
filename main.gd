@@ -37,11 +37,7 @@ var gameState
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	matchCurr = 1
 	_menu_screen()
-	
-	matchCurr = 1
-	_next_match(gameDict["Match" + str(matchCurr)])
 	
 	
 #Level information dictionary
@@ -115,10 +111,22 @@ func _menu_screen():
 	$ControlHUD.hide()
 	$ControlHUD/DealerLayer.hide()
 	$TransitionHUD.hide()
-	matchCurr = 0
+	$RouletteHud.hide()
+	$TrialsHUD.hide()
+	quotaCurr = 0
+	matchCurr = 1
 	turnCurr = 0
 	gameState = 0
 	bankCurr = 100
+	
+	_next_match(gameDict["Match" + str(matchCurr)])
+	_update_round_display()
+	_update_context_display()
+	
+func _roulette_screen():
+	$RouletteHud.show()
+	$MenuHUD.hide()
+	
 	
 #When 'play' is pressed
 func _instance_game():
@@ -127,6 +135,12 @@ func _instance_game():
 	$TransitionHUD.show()
 	_update_context_display()
 	
+func _reset_everything():
+	_menu_screen()
+	
+func _input(event: InputEvent):
+	if event.is_action_pressed("Main Menu"):
+		_reset_everything()
 	
 #When the next match occurs
 func _next_match(dictCurr):
