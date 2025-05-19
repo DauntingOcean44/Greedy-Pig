@@ -49,14 +49,15 @@ func _update_other_values():
 	var floatA := 0.0
 	
 	floatA = float(1) / float(38)
-	floatA = snapped(floatA, 0.001)
+	floatA = snapped(floatA, 0.0001)
 	floatA *= 100
+	print(floatA)
 	PValue.text = str(floatA) + "%"
 
 	
-	var floatB := 0.0
-	floatB = floatA * trialSize / 100
-	floatB = snapped(floatB, 0.001)
+	var floatB : float = 0.0
+	floatB = float(floatA) * float(trialSize) / float(100)
+	floatB = snapped(float(floatB), 0.00001)
 	EValue.text = str(floatB)
 	
 	AmountA.text = str(trialSize) + "x"

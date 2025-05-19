@@ -455,7 +455,7 @@ rounded = true
 custom_minimum_size = Vector2(140, 0)
 layout_mode = 2
 theme_type_variation = &"Immutable"
-text = "x1000"
+text = "1000x"
 horizontal_alignment = 1
 vertical_alignment = 1
 
