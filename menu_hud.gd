@@ -17,3 +17,7 @@ func _on_start_game_button_up():
 
 func _on_start_roulette_button_up():
 	get_tree().call_group("start_game", "_roulette_screen")
+
+
+func _on_start_trials_button_up():
+	get_tree().call_group("start_game", "_trials_screen")

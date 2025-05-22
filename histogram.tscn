@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://2d3sjmjowgru"]
+
+[ext_resource type="Script" path="res://addons/god_plot/tools/graphs/histogram.gd" id="1_uc6vk"]
+[ext_resource type="Script" path="res://addons/god_plot/tools/series/series_types/histogram_series.gd" id="2_da5j3"]
+
+[node name="Histogram" type="Control"]
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Histogram" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_uc6vk")
+x_max = 100.0
+background_color = Color(0.0431373, 0.12549, 0.152941, 1)
+horizontal_title = "Money"
+vertical_title = "Frequency"
+label_size = 0.5
+
+[node name="HistogramSeries" type="Node" parent="Histogram"]
+script = ExtResource("2_da5j3")
+data = Array[float]([7.0, 7.0, 14.0, 15.0])
+color = Color(0.25098, 0.47451, 0.54902, 1)

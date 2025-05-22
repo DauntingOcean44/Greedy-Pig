@@ -127,6 +127,9 @@ func _roulette_screen():
 	$RouletteHud.show()
 	$MenuHUD.hide()
 	
+func _trials_screen():
+	$TrialsHUD.show()
+	$MenuHUD.hide()
 	
 #When 'play' is pressed
 func _instance_game():
@@ -138,9 +141,16 @@ func _instance_game():
 func _reset_everything():
 	_menu_screen()
 	
+func _toggle_fullscreen():
+	var mode := DisplayServer.window_get_mode()
+	var is_window: bool = mode != DisplayServer.WINDOW_MODE_FULLSCREEN
+	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN if is_window else DisplayServer.WINDOW_MODE_WINDOWED)
+	
 func _input(event: InputEvent):
 	if event.is_action_pressed("Main Menu"):
 		_reset_everything()
+	if event.is_action_pressed("Fullscreen"):
+		_toggle_fullscreen()
 	
 #When the next match occurs
 func _next_match(dictCurr):
