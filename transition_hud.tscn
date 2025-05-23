@@ -95,17 +95,22 @@ theme = ExtResource("3_cg8uf")
 theme_override_font_sizes/normal_font_size = 24
 text = "Bleh bleh bleh, blah blah blah, bleu bleu bleu dawojaopdjaw opdawopdj awopdj djawopawj wjaop awjdop AWOD AJAWDJAWOPDJ AWOPD JAWOPD AWJDOPAWJDJOPJPPJPAOWDJAWOP DJAWOPDJ AWOPDAWJD JAWOPDAWJPOAWJPawpodjawop djwop awjdopawjd awopdjawop djawOPdjPAJWAJDAOPD"
 
-[node name="StartMatchButton" type="Button" parent="Control/VBoxContainer/PanelContainer/Panel"]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -149.0
-offset_top = -45.0
-grow_horizontal = 0
-grow_vertical = 0
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/VBoxContainer/PanelContainer/Panel"]
+layout_mode = 0
+offset_top = 111.0
+offset_right = 1078.0
+offset_bottom = 155.0
+alignment = 2
+
+[node name="SkipButton" type="Button" parent="Control/VBoxContainer/PanelContainer/Panel/HBoxContainer"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+text = "Skip"
+
+[node name="StartMatchButton" type="Button" parent="Control/VBoxContainer/PanelContainer/Panel/HBoxContainer"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
 text = "Next"
 
-[connection signal="button_up" from="Control/VBoxContainer/PanelContainer/Panel/StartMatchButton" to="." method="_on_start_match_button_button_up"]
+[connection signal="button_up" from="Control/VBoxContainer/PanelContainer/Panel/HBoxContainer/SkipButton" to="." method="_on_skip_button_button_up"]
+[connection signal="button_up" from="Control/VBoxContainer/PanelContainer/Panel/HBoxContainer/StartMatchButton" to="." method="_on_start_match_button_button_up"]

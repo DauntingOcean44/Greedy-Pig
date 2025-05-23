@@ -13,3 +13,7 @@ func _process(delta: float) -> void:
 
 func _on_start_match_button_button_up() -> void:
 	get_tree().call_group("match_button", "_press_match_button")
+
+
+func _on_skip_button_button_up() -> void:
+	get_tree().call_group("match_button", "_press_skip_button")

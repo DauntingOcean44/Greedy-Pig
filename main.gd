@@ -71,13 +71,133 @@ var gameDict = {
 		"VetoC": [4, 9],
 		
 		"Context": ["It's only going to get more challenging from here.", "Veto CHANCES:\n$2 | 17%\n$3 | 34%\n$4 | 50%"]
+	},
+	"Match3": {
+		"Quota": 40,
+		"Turns": 17,
+		
+		"WagerA": 1,
+		"WagerB": 2,
+		"WagerC": 8,
+		
+		#First value is the wager, second value is the number of that wager
+		"VetoA": [1, 1],
+		"VetoB": [2, 4],
+		"VetoC": [8, 15], #Total 20
+		
+		"Context": ["Will you go big or go home?", "Veto CHANCES:\n$1 | 5%\n$2 | 20%\n$8 | 75%"]
+	},
+	"Match4": {
+		"Quota": 50,
+		"Turns": 15,
+		
+		"WagerA": 0,
+		"WagerB": 5,
+		"WagerC": 25,
+		
+		#First value is the wager, second value is the number of that wager
+		"VetoA": [0, 0],
+		"VetoB": [5, 1],
+		"VetoC": [25, 8], #Total 9
+		
+		"Context": ["I suggest you pick $0 every time...", "Veto CHANCES:\n$0 | 0%\n$5 | 11%\n$25 | 89%"]
+	},
+	"Match5": {
+		"Quota": 60,
+		"Turns": 13,
+		
+		"WagerA": 5,
+		"WagerB": 10,
+		"WagerC": 15,
+		
+		#First value is the wager, second value is the number of that wager
+		"VetoA": [5, 25],
+		"VetoB": [10, 50],
+		"VetoC": [15, 75], #Total 150
+		
+		"Context": ["Do you prefer consistency or getting lucky?", "Veto CHANCES:\n$5 | 16%\n$10 | 34%\n$15 | 50%"]
+	},
+	"Match6": {
+		"Quota": 180,
+		"Turns": 10,
+		
+		"WagerA": 13,
+		"WagerB": 14,
+		"WagerC": 90,
+		
+		#First value is the wager, second value is the number of that wager
+		"VetoA": [13, 3],
+		"VetoB": [14, 4],
+		"VetoC": [90, 70], #Total 77
+		
+		"Context": ["The chances of getting $90 at least once is actually 61%.", "Veto CHANCES:\n$13 | 4%\n$14 | 5%\n$90 | 91%"]
+	},
+	"Match7": {
+		"Quota": 200,
+		"Turns": 7,
+		
+		"WagerA": 20,
+		"WagerB": 30,
+		"WagerC": 300,
+		
+		#First value is the wager, second value is the number of that wager
+		"VetoA": [20, 1],
+		"VetoB": [30, 2],
+		"VetoC": [300, 20], #Total 23
+		
+		"Context": ["If you opt to pick the jackpot option every single time, you've got a 62% of bringing it home. That also means you have a 38% of losing on the spot.", "Veto CHANCES:\n$20 | 4%\n$30 | 9%\n$300 | 87%"]
+	},
+	"Match8": {
+		"Quota": 300,
+		"Turns": 5,
+		
+		"WagerA": 30,
+		"WagerB": 40,
+		"WagerC": 100,
+		
+		#First value is the wager, second value is the number of that wager
+		"VetoA": [30, 10],
+		"VetoB": [40, 15],
+		"VetoC": [100, 60], #Total 85
+		
+		"Context": ["You could play its safe. It would certainly be a net loss, but, if you've got the money to spare, why not?", "Veto CHANCES:\n$30 | 12%\n$40 | 18%\n$100 | 70%"]
+	},
+	"Match9": {
+		"Quota": 1000,
+		"Turns": 25,
+		
+		"WagerA": 4,
+		"WagerB": 40,
+		"WagerC": 400,
+		
+		#First value is the wager, second value is the number of that wager
+		"VetoA": [4, 0],
+		"VetoB": [40, 1],
+		"VetoC": [400, 9], #Total 10
+		
+		"Context": ["Thing's aren't looking too good, now are they? At least you made it this far.","Alright. I'll throw you a bone. You'll need it for the final round...", "Veto CHANCES:\n$4 | 0%\n$40 | 10%\n$400 | 90%"]
+	},
+	"Match10": {
+		"Quota": 10000,
+		"Turns": 1,
+		
+		"WagerA": 9800,
+		"WagerB": 9950,
+		"WagerC": 9990,
+		
+		#First value is the wager, second value is the number of that wager
+		"VetoA": [9800, 1],
+		"VetoB": [9950, 29],
+		"VetoC": [9990, 70], #Total 10
+		
+		"Context": ["The money you've accumulated will determine how much of a risk you need to take. I'll spell it out for you real simple.","If you have at least $200, go ahead and pick the safest option. You'll be outta cash, but at least you won't owe me.","If you're a little tight, but still got a fifty in your back pocket, the second option'll suit you best.","But, maybe you're all outta luck","Or maybe, you just wanna risk it all.", "Let us seal your fate...", "Veto CHANCES:\n$9800 | 1%\n$9950 | 29%\n$9990 | 70%"]
 	}
 }
 
 #Randomly picks veto based on weight
 func _random_weighted(array):
 	var totalWeight = array[1] + array[3] + array[5]
-	var randomIndex = ceil(randf_range(1, totalWeight))
+	var randomIndex = ceil(randf_range(0, totalWeight))
 	var currIndex = 0
 	var vetoData
 		
@@ -102,8 +222,6 @@ func _random_weighted(array):
 		vetoData = vetoArray[4]
 		#array[5] -= 1
 		return vetoData
-		
-			
 
 #When the game is reset / opened
 func _menu_screen():
@@ -113,6 +231,8 @@ func _menu_screen():
 	$TransitionHUD.hide()
 	$RouletteHud.hide()
 	$TrialsHUD.hide()
+	$GameOver.hide()
+	$Winner.hide()
 	quotaCurr = 0
 	matchCurr = 1
 	turnCurr = 0
@@ -195,9 +315,9 @@ func _update_context_display():
 	
 	#Button
 	if contextCurr != contextArray.size() - 1:
-		get_node("TransitionHUD/Control/VBoxContainer/PanelContainer/Panel/StartMatchButton").text = "Next"
+		get_node("TransitionHUD/Control/VBoxContainer/PanelContainer/Panel/HBoxContainer/StartMatchButton").text = "Next"
 	else:
-		get_node("TransitionHUD/Control/VBoxContainer/PanelContainer/Panel/StartMatchButton").text = "Start Match"
+		get_node("TransitionHUD/Control/VBoxContainer/PanelContainer/Panel/HBoxContainer/StartMatchButton").text = "Start Match"
 		
 		
 	#Text
@@ -212,6 +332,16 @@ func _cast_wager(amount):
 	
 func _press_match_button():
 	contextCurr += 1
+	#Start match when all text is read
+	if contextCurr == contextArray.size():
+		$ControlHUD.show()
+		$ControlHUD/DealerLayer.show()
+		$TransitionHUD.hide()
+	else:
+		_update_context_display()
+		
+func _press_skip_button():
+	contextCurr += max(1, contextArray.size() - (contextCurr + 1))
 	#Start match when all text is read
 	if contextCurr == contextArray.size():
 		$ControlHUD.show()
@@ -264,15 +394,31 @@ func _on_compare_delay_timeout():
 
 func _on_round_delay_timeout():
 	turnCurr += 1
-	if turnCurr > turnMax:
+	
+	#Update money first
+	if turnCurr > turnMax and matchCurr < 10:
 		bankCurr += quotaCurr - quotaMax
+	
+	#On round completion
+	if turnCurr > turnMax and matchCurr < 10 and bankCurr >= 0:
 		matchCurr += 1
 		_next_match(gameDict["Match" + str(matchCurr)])
 		_update_context_display()
 		$ControlHUD.hide()
 		$ControlHUD/DealerLayer.hide()
-		$ControlHUD/DealerLayer.hide()
 		$TransitionHUD.show()
+		
+	#If the player runs outta cash
+	elif bankCurr < 0:
+		$ControlHUD.hide()
+		$ControlHUD/DealerLayer.hide()
+		$GameOver.show()
+		
+	elif bankCurr >= 0 and turnCurr > turnMax and matchCurr >= 10:
+		$ControlHUD.hide()
+		$ControlHUD/DealerLayer.hide()
+		$Winner.show()
+		
 		
 		
 	get_node("ControlHUD/Control/WagerContainer/WagerA").disabled = false
