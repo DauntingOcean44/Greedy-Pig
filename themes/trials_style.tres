@@ -1,4 +1,8 @@
-[gd_resource type="Theme" load_steps=15 format=3 uid="uid://dv8kqrq4wobpt"]
+[gd_resource type="Theme" load_steps=19 format=3 uid="uid://dv8kqrq4wobpt"]
+
+[ext_resource type="Texture2D" uid="uid://kuwg22n2ermv" path="res://sprites/grabber.png" id="1_dokdh"]
+[ext_resource type="Texture2D" uid="uid://b2sbuvbqm5lrw" path="res://sprites/grabber_disabled.png" id="2_bn10d"]
+[ext_resource type="Texture2D" uid="uid://dmx7k4mtnt34" path="res://sprites/grabber_highlight.png" id="3_wonpi"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d26fh"]
 draw_center = false
@@ -66,6 +70,9 @@ content_margin_right = 5.0
 content_margin_bottom = 5.0
 bg_color = Color(0.439216, 0.662745, 0.631373, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_82ag1"]
+draw_center = false
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ewae8"]
 content_margin_left = 10.0
 content_margin_top = 10.0
@@ -124,12 +131,16 @@ Button/styles/pressed = SubResource("StyleBoxFlat_j6v81")
 ChildPanelContainer/base_type = &"PanelContainer"
 ChildPanelContainer/styles/panel = SubResource("StyleBoxFlat_k5jc6")
 HBoxContainer/constants/separation = 24
+HSlider/icons/grabber = ExtResource("1_dokdh")
+HSlider/icons/grabber_disabled = ExtResource("2_bn10d")
+HSlider/icons/grabber_highlight = ExtResource("3_wonpi")
 Immutable/base_type = &"Label"
 Immutable/colors/font_color = Color(1, 1, 1, 1)
 Immutable/colors/font_outline_color = Color(1, 1, 1, 1)
 Immutable/styles/normal = SubResource("StyleBoxFlat_vt3ft")
 Mutable/base_type = &"Label"
 Mutable/styles/normal = SubResource("StyleBoxFlat_rxuk6")
+Panel/styles/panel = SubResource("StyleBoxFlat_82ag1")
 PanelContainerSlider/base_type = &"PanelContainer"
 PanelContainerSlider/styles/panel = SubResource("StyleBoxFlat_ewae8")
 ParentPanelContainer/base_type = &"PanelContainer"

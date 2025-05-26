@@ -38,6 +38,7 @@ var gameState
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	_menu_screen()
+	get_tree().call_group("trials_hud", "_get_data", gameDict)
 	
 	
 #Level information dictionary
@@ -396,7 +397,7 @@ func _on_round_delay_timeout():
 	turnCurr += 1
 	
 	#Update money first
-	if turnCurr > turnMax and matchCurr < 10:
+	if turnCurr > turnMax:
 		bankCurr += quotaCurr - quotaMax
 	
 	#On round completion

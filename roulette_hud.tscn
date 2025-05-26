@@ -458,6 +458,7 @@ max_value = 10000.0
 step = 500.0
 value = 1000.0
 rounded = true
+scrollable = false
 
 [node name="AmountA" type="Label" parent="PanelContainer/VBoxContainer/ControlBody/CenterContainer/VBoxContainer/PanelContainer2/HBoxContainer/PanelContainer/HBoxContainer"]
 custom_minimum_size = Vector2(140, 0)

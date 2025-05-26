@@ -27,7 +27,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
 
@@ -46,7 +46,7 @@ func _run_1000_trials():
 	
 	#Calculate the probability for each trial
 	for i in range($PanelContainer/VBoxContainer/ControlBody/CenterContainer/VBoxContainer/PanelContainer/GridContainer.get_child_count()):
-		var child = $PanelContainer/VBoxContainer/ControlBody/CenterContainer/VBoxContainer/PanelContainer/GridContainer.get_child(i)
+		#var child = $PanelContainer/VBoxContainer/ControlBody/CenterContainer/VBoxContainer/PanelContainer/GridContainer.get_child(i)
 		var probability = displayTable[i][1] / trialSize
 		probability *= 100
 		probability = snapped(float(probability), float(0.01))
@@ -98,7 +98,7 @@ func _update_other_values():
 	
 	AmountA.text = str(trialSize) + "x"
 
-func _on_trial_slider_drag_ended(value_changed: bool):
+func _on_trial_slider_drag_ended(_value_changed: bool):
 	_update_other_values()
 	
 	

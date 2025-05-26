@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://y04kovox6ja6"]
+[gd_scene load_steps=5 format=3 uid="uid://y04kovox6ja6"]
 
+[ext_resource type="Script" path="res://trials_content.gd" id="1_olsms"]
 [ext_resource type="Theme" uid="uid://dv8kqrq4wobpt" path="res://themes/trials_style.tres" id="1_pha0k"]
 [ext_resource type="PackedScene" uid="uid://2d3sjmjowgru" path="res://histogram.tscn" id="2_fmn4v"]
+[ext_resource type="Texture2D" uid="uid://cl86g5wno8rfl" path="res://sprites/unlocked.png" id="2_ichbf"]
 
 [node name="trials_content" type="Control"]
 layout_mode = 3
@@ -12,6 +14,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+script = ExtResource("1_olsms")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -73,7 +76,7 @@ layout_mode = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer/VBoxContainer/CenterContainer"]
 layout_mode = 2
-theme_type_variation = &"ChildPanelContainer"
+theme_type_variation = &"PanelContainerSlider"
 
 [node name="GridContainer" type="GridContainer" parent="CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer/VBoxContainer/CenterContainer/PanelContainer"]
 layout_mode = 2
@@ -178,48 +181,17 @@ text = "Select Wager"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PanelContainer" type="PanelContainer" parent="CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer2/VBoxContainer"]
+[node name="PanelContainerA" type="PanelContainer" parent="CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer2/VBoxContainer"]
 layout_mode = 2
 theme_type_variation = &"PanelContainerSlider"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer2/VBoxContainer/PanelContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer2/VBoxContainer/PanelContainerA"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer2/VBoxContainer/PanelContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer2/VBoxContainer/PanelContainerA/VBoxContainer"]
 layout_mode = 2
 
-[node name="MoneyA" type="Label" parent="CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer2/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(120, 0)
-layout_mode = 2
-theme_type_variation = &"Immutable"
-text = "$1"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Control" type="Control" parent="CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer2/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(120, 0)
-layout_mode = 2
-
-[node name="SliderA" type="HSlider" parent="CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer2/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer/Control"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="AmountA" type="Label" parent="CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer2/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(120, 0)
-layout_mode = 2
-theme_type_variation = &"Immutable"
-text = "x5"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer2/VBoxContainer/PanelContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="MoneyB" type="Label" parent="CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer2/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer2"]
+[node name="Money" type="Label" parent="CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer2/VBoxContainer/PanelContainerA/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 theme_type_variation = &"Immutable"
@@ -228,19 +200,37 @@ text = "$3
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Control" type="Control" parent="CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer2/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer2"]
+[node name="Panel" type="Panel" parent="CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer2/VBoxContainer/PanelContainerA/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 
-[node name="SliderB" type="HSlider" parent="CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer2/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer2/Control"]
+[node name="WagerSlider" type="HSlider" parent="CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer2/VBoxContainer/PanelContainerA/VBoxContainer/HBoxContainer/Panel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -7.0
+offset_top = -30.0
+offset_right = -22.0
+offset_bottom = 30.0
 grow_horizontal = 2
 grow_vertical = 2
+rounded = true
+scrollable = false
 
-[node name="AmountB" type="Label" parent="CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer2/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer2"]
+[node name="LockToggle" type="Button" parent="CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer2/VBoxContainer/PanelContainerA/VBoxContainer/HBoxContainer/Panel"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+offset_left = 95.0
+offset_top = -13.0
+offset_right = 145.0
+offset_bottom = 37.0
+icon = ExtResource("2_ichbf")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="Amount" type="Label" parent="CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer2/VBoxContainer/PanelContainerA/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 theme_type_variation = &"Immutable"
@@ -248,31 +238,107 @@ text = "x5"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer2/VBoxContainer/PanelContainer/VBoxContainer"]
+[node name="PanelContainerB" type="PanelContainer" parent="CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer2/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"PanelContainerSlider"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer2/VBoxContainer/PanelContainerB"]
 layout_mode = 2
 
-[node name="MoneyC" type="Label" parent="CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer2/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer3"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer2/VBoxContainer/PanelContainerB/VBoxContainer"]
+layout_mode = 2
+
+[node name="Money" type="Label" parent="CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer2/VBoxContainer/PanelContainerB/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 theme_type_variation = &"Immutable"
-text = "$5
+text = "$3
 "
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Control" type="Control" parent="CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer2/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer3"]
+[node name="Panel" type="Panel" parent="CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer2/VBoxContainer/PanelContainerB/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 
-[node name="SliderC" type="HSlider" parent="CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer2/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer3/Control"]
+[node name="WagerSlider" type="HSlider" parent="CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer2/VBoxContainer/PanelContainerB/VBoxContainer/HBoxContainer/Panel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -7.0
+offset_right = -22.0
 grow_horizontal = 2
 grow_vertical = 2
+scrollable = false
 
-[node name="AmountC" type="Label" parent="CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer2/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer3"]
+[node name="LockToggle" type="Button" parent="CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer2/VBoxContainer/PanelContainerB/VBoxContainer/HBoxContainer/Panel"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+offset_left = 95.0
+offset_top = -13.0
+offset_right = 145.0
+offset_bottom = 37.0
+icon = ExtResource("2_ichbf")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="Amount" type="Label" parent="CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer2/VBoxContainer/PanelContainerB/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+theme_type_variation = &"Immutable"
+text = "x5"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PanelContainerC" type="PanelContainer" parent="CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer2/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"PanelContainerSlider"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer2/VBoxContainer/PanelContainerC"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer2/VBoxContainer/PanelContainerC/VBoxContainer"]
+layout_mode = 2
+
+[node name="Money" type="Label" parent="CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer2/VBoxContainer/PanelContainerC/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+theme_type_variation = &"Immutable"
+text = "$3
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel" type="Panel" parent="CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer2/VBoxContainer/PanelContainerC/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+
+[node name="WagerSlider" type="HSlider" parent="CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer2/VBoxContainer/PanelContainerC/VBoxContainer/HBoxContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -7.0
+offset_right = -22.0
+grow_horizontal = 2
+grow_vertical = 2
+scrollable = false
+
+[node name="LockToggle" type="Button" parent="CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer2/VBoxContainer/PanelContainerC/VBoxContainer/HBoxContainer/Panel"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+offset_left = 95.0
+offset_top = -13.0
+offset_right = 145.0
+offset_bottom = 37.0
+icon = ExtResource("2_ichbf")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="Amount" type="Label" parent="CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer2/VBoxContainer/PanelContainerC/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 theme_type_variation = &"Immutable"
@@ -395,3 +461,39 @@ theme_type_variation = &"Immutable"
 text = "5"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="PanelContainer3" type="PanelContainer" parent="CenterContainer/PanelContainer/HBoxContainer/Outcomes/CenterContainer/VBoxContainer2"]
+layout_mode = 2
+theme_type_variation = &"ChildPanelContainer"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CenterContainer/PanelContainer/HBoxContainer/Outcomes/CenterContainer/VBoxContainer2/PanelContainer3"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/PanelContainer/HBoxContainer/Outcomes/CenterContainer/VBoxContainer2/PanelContainer3/VBoxContainer2"]
+layout_mode = 2
+
+[node name="QuotaReq" type="Label" parent="CenterContainer/PanelContainer/HBoxContainer/Outcomes/CenterContainer/VBoxContainer2/PanelContainer3/VBoxContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme_type_variation = &"Subtitle"
+text = "Quota Requirement:"
+
+[node name="BinAmount" type="Label" parent="CenterContainer/PanelContainer/HBoxContainer/Outcomes/CenterContainer/VBoxContainer2/PanelContainer3/VBoxContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(130, 0)
+layout_mode = 2
+theme_type_variation = &"Immutable"
+text = "40"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="CenterContainer/PanelContainer/HBoxContainer/Outcomes/CenterContainer/VBoxContainer2/PanelContainer3/VBoxContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Graph Trials"
+
+[connection signal="drag_ended" from="CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer2/VBoxContainer/PanelContainerA/VBoxContainer/HBoxContainer/Panel/WagerSlider" to="." method="_on_wager_sliderA_drag_ended"]
+[connection signal="button_up" from="CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer2/VBoxContainer/PanelContainerA/VBoxContainer/HBoxContainer/Panel/LockToggle" to="." method="_on_lock_toggle_A_button_up"]
+[connection signal="drag_ended" from="CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer2/VBoxContainer/PanelContainerB/VBoxContainer/HBoxContainer/Panel/WagerSlider" to="." method="_on_wager_sliderB_drag_ended"]
+[connection signal="button_up" from="CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer2/VBoxContainer/PanelContainerB/VBoxContainer/HBoxContainer/Panel/LockToggle" to="." method="_on_lock_toggle_B_button_up"]
+[connection signal="drag_ended" from="CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer2/VBoxContainer/PanelContainerC/VBoxContainer/HBoxContainer/Panel/WagerSlider" to="." method="_on_wager_sliderC_drag_ended"]
+[connection signal="button_up" from="CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer2/VBoxContainer/PanelContainerC/VBoxContainer/HBoxContainer/Panel/LockToggle" to="." method="_on_lock_toggle_C_button_up"]

@@ -30,6 +30,7 @@ start_game="Will activate when the ready button is pressed."
 wager_amount="The player's chosen wager."
 wager_button="Used to toggle buttons on & off"
 match_button=""
+trials_hud="To signal the trials hud."
 
 [gui]
 
