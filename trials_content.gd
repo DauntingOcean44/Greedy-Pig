@@ -22,13 +22,13 @@ func _on_lock_toggle_C_button_up() -> void:
 	get_tree().call_group("trials_hud", "_toggle_slider_C")
 
 
-func _on_wager_sliderA_drag_ended(value_changed: bool) -> void:
-		get_tree().call_group("trials_hud", "_slider_allocation_A")
+func _on_wager_sliderA_drag_ended(_value_changed: bool) -> void:
+		get_tree().call_group("trials_hud", "distributeSliderA")
 
 
-func _on_wager_sliderB_drag_ended(value_changed: bool) -> void:
-	get_tree().call_group("trials_hud", "_slider_allocation_B")
+func _on_wager_sliderB_drag_ended(_value_changed: bool) -> void:
+	get_tree().call_group("trials_hud", "distributeSliderB")
 
 
-func _on_wager_sliderC_drag_ended(value_changed: bool) -> void:
-	get_tree().call_group("trials_hud", "_slider_allocation_C")
+func _on_wager_sliderC_drag_ended(_value_changed: bool) -> void:
+	get_tree().call_group("trials_hud", "distributeSliderC")

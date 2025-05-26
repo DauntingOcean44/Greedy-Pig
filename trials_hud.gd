@@ -8,12 +8,6 @@ var selectedTab
 #Currently selected amount of each wager
 var numWagerArray = []
 
-#The locked & unlocked sliders
-var scrollDict = {
-	"sliderA": 0,
-	"sliderB": 0,
-	"sliderC": 0
-}
 
 #The value of each wager (and also the veto)
 var valueWagerA
@@ -24,11 +18,6 @@ var valueWagerC
 var vetoWeightA
 var vetoWeightB
 var vetoWeightC
-
-#Lock toggles
-var toggleA = true
-var toggleB = true
-var toggleC = true
 
 #Identical to the information found in the main data dictionary
 var dataDict
@@ -61,7 +50,7 @@ var pathLockToggleC = "CenterContainer/PanelContainer/HBoxContainer/Control/Cent
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -82,16 +71,13 @@ func _on_tab_container_tab_clicked(tab: int):
 
 
 func _reset_sliders():
-	scrollDict["sliderA"] = numWagerArray[0]
-	scrollDict["sliderB"] = numWagerArray[1]
-	scrollDict["sliderC"] = numWagerArray[2]
-	
-	if !toggleA:
+	if !numWagerArray[0][1]:
 		_toggle_slider_A()
-	if !toggleB:
+	if !numWagerArray[1][1]:
 		_toggle_slider_B()
-	if !toggleC:
+	if !numWagerArray[2][1]:
 		_toggle_slider_C()
+		
 
 #Pull tab data
 func _pull_match_data(tab):
@@ -112,51 +98,348 @@ func _pull_match_data(tab):
 	#Setting the default values for the slider
 	numWagerArray.clear()
 	for i in range(3):
-		numWagerArray.append(maxWagers / 3)
+		numWagerArray.append([maxWagers / 3, true])
 	
 	#Equally applying the remainder
 	var numWagerRemainder = maxWagers % 3
 	
 	for i in range(numWagerRemainder):
-		numWagerArray[i % 3] += 1
+		numWagerArray[i % 3][0] += 1
+	
+	print(numWagerArray)
 	
 	
 func _toggle_slider_A():
-	if toggleA:
-		toggleA = false
+	if numWagerArray[0][1]:
+		numWagerArray[0][1] = false
 		relevantScreen.get_node(pathSliderA).editable = false
 		relevantScreen.get_node(pathLockToggleA).icon = load("res://sprites/locked.png")
-		scrollDict["sliderA"] = 0
 	else:
-		toggleA = true
+		numWagerArray[0][1] = true
 		relevantScreen.get_node(pathSliderA).editable = true
 		relevantScreen.get_node(pathLockToggleA).icon = load("res://sprites/unlocked.png")
-		scrollDict["sliderA"] = numWagerArray[0]
 		
 func _toggle_slider_B():
-	if toggleB:
-		toggleB = false
+	if numWagerArray[1][1]:
+		numWagerArray[1][1] = false
 		relevantScreen.get_node(pathSliderB).editable = false
 		relevantScreen.get_node(pathLockToggleB).icon = load("res://sprites/locked.png")
-		scrollDict["sliderB"] = 0
 	else:
-		toggleB = true
+		numWagerArray[1][1] = true
 		relevantScreen.get_node(pathSliderB).editable = true
 		relevantScreen.get_node(pathLockToggleB).icon = load("res://sprites/unlocked.png")
-		scrollDict["sliderB"] = numWagerArray[0]
 		
 func _toggle_slider_C():
-	if toggleC:
-		toggleC = false
+	if numWagerArray[2][1]:
+		numWagerArray[2][1] = false
 		relevantScreen.get_node(pathSliderC).editable = false
 		relevantScreen.get_node(pathLockToggleC).icon = load("res://sprites/locked.png")
-		scrollDict["sliderC"] = 0
 	else:
-		toggleC = true
+		numWagerArray[2][1] = true
 		relevantScreen.get_node(pathSliderC).editable = true
 		relevantScreen.get_node(pathLockToggleC).icon = load("res://sprites/unlocked.png")
-		scrollDict["sliderC"] = numWagerArray[0]
 	
+	
+func distributeSliderA():
+	#How much the slider can be moved up or down by
+	var incrimentalSlideAllowance = 0
+	var decrementalSlideAllowance = 0
+	
+	#Storing the availables seperately
+	var availableSlidersArray = []
+	availableSlidersArray.clear()
+	
+	#Creating the availableSlidersArray
+	for i in range(numWagerArray.size()):
+		if i != 0 && numWagerArray[i][1] == true:
+			availableSlidersArray.append(numWagerArray[i])
+	
+	
+	#The requested change by the user
+	var difference = relevantScreen.get_node(pathSliderA).value - numWagerArray[0][0]
+	
+	#Add up the values from the other sliders to determine how much the selected slider can use
+	for i in range(availableSlidersArray.size()):
+		if availableSlidersArray[i][1]:
+			incrimentalSlideAllowance += availableSlidersArray[i][0]
+			
+			
+	#Add up how much the other sliders can be incrimented by
+	for i in range(availableSlidersArray.size()):
+		if availableSlidersArray[i][1]:
+			decrementalSlideAllowance += maxWagers - availableSlidersArray[i][0]
+			
+	#The minimum between how much the sliders can be incrimented
+	#And also how much the selected slider has to give
+	decrementalSlideAllowance = min(decrementalSlideAllowance, numWagerArray[0][0])
+	decrementalSlideAllowance = -decrementalSlideAllowance
+	
+	
+	#Ensuring the slider is moved within a legal limit
+	var clampedDifference = clamp(difference, decrementalSlideAllowance, incrimentalSlideAllowance)
+	
+	#The inverse must be applied to the OTHER sliders
+	var inverseClampedDifference = -clampedDifference
+	#And we can't forget about the remainder...
+	
+	if availableSlidersArray:
+		#var remainderInverseClampedDifference = int(inverseClampedDifference) % int(availableSlidersArray.size())
+	
+	#For loop iteration purposes
+		var absClampedDifference = abs(inverseClampedDifference)
+		
+		#Distributing negative difference
+		if inverseClampedDifference < 0:
+			
+			var validSliders = []
+			for j in range(availableSlidersArray.size()):
+				if availableSlidersArray[j][0] > 0:
+					validSliders.append(j)
+			
+			
+			for i in range(absClampedDifference):
+				if validSliders.size() == 0:
+					break
+					
+				var targetIndex = validSliders[i % validSliders.size()]
+				availableSlidersArray[targetIndex][0] -= 1
+				
+				if availableSlidersArray[targetIndex][0] <= 0:
+					validSliders.erase(targetIndex)
+					
+		#Distributing positive difference
+		if inverseClampedDifference > 0:
+			
+			var validSliders = []
+			for j in range(availableSlidersArray.size()):
+				if availableSlidersArray[j][0] < maxWagers:
+					validSliders.append(j)
+			
+			for i in range(absClampedDifference):
+				
+				#There are no more sliders available
+				if !validSliders.size():
+					break
+			
+				var targetIndex = validSliders[i % validSliders.size()]
+				availableSlidersArray[targetIndex][0] += 1
+				
+				if availableSlidersArray[targetIndex][0] >= maxWagers:
+					validSliders.erase(targetIndex)
+			
+	#Applying these values
+	numWagerArray[0][0] += clampedDifference
+	
+	#Since arrays are passed by reference, the values within the numWagerArray have already correctly been changed.
+			
+	
+	#Updating the sliders themselves
+	relevantScreen.get_node(pathSliderA).value = numWagerArray[0][0]
+	relevantScreen.get_node(pathSliderB).value = numWagerArray[1][0]
+	relevantScreen.get_node(pathSliderC).value = numWagerArray[2][0]
+	
+	_update_display()
+	
+	
+func distributeSliderB():
+	#How much the slider can be moved up or down by
+	var incrimentalSlideAllowance = 0
+	var decrementalSlideAllowance = 0
+	
+	#Storing the availables seperately
+	var availableSlidersArray = []
+	availableSlidersArray.clear()
+	
+	#Creating the availableSlidersArray
+	for i in range(numWagerArray.size()):
+		if i != 1 && numWagerArray[i][1] == true:
+			availableSlidersArray.append(numWagerArray[i])
+	
+	
+	#The requested change by the user
+	var difference = relevantScreen.get_node(pathSliderB).value - numWagerArray[1][0]
+	
+	#Add up the values from the other sliders to determine how much the selected slider can use
+	for i in range(availableSlidersArray.size()):
+		if availableSlidersArray[i][1]:
+			incrimentalSlideAllowance += availableSlidersArray[i][0]
+			
+			
+	#Add up how much the other sliders can be incrimented by
+	for i in range(availableSlidersArray.size()):
+		if availableSlidersArray[i][1]:
+			decrementalSlideAllowance += maxWagers - availableSlidersArray[i][0]
+			
+	#The minimum between how much the sliders can be incrimented
+	#And also how much the selected slider has to give
+	decrementalSlideAllowance = min(decrementalSlideAllowance, numWagerArray[1][0])
+	decrementalSlideAllowance = -decrementalSlideAllowance
+	
+	
+	#Ensuring the slider is moved within a legal limit
+	var clampedDifference = clamp(difference, decrementalSlideAllowance, incrimentalSlideAllowance)
+	
+	#The inverse must be applied to the OTHER sliders
+	var inverseClampedDifference = -clampedDifference
+	#And we can't forget about the remainder...
+	
+	if availableSlidersArray:
+		#var remainderInverseClampedDifference = int(inverseClampedDifference) % int(availableSlidersArray.size())
+	
+	#For loop iteration purposes
+		var absClampedDifference = abs(inverseClampedDifference)
+		
+		#Distributing negative difference
+		if inverseClampedDifference < 0:
+			
+			var validSliders = []
+			for j in range(availableSlidersArray.size()):
+				if availableSlidersArray[j][0] > 0:
+					validSliders.append(j)
+			
+			
+			for i in range(absClampedDifference):
+				if validSliders.size() == 0:
+					break
+					
+				var targetIndex = validSliders[i % validSliders.size()]
+				availableSlidersArray[targetIndex][0] -= 1
+				
+				if availableSlidersArray[targetIndex][0] <= 0:
+					validSliders.erase(targetIndex)
+					
+		#Distributing positive difference
+		if inverseClampedDifference > 0:
+			
+			var validSliders = []
+			for j in range(availableSlidersArray.size()):
+				if availableSlidersArray[j][0] < maxWagers:
+					validSliders.append(j)
+			
+			for i in range(absClampedDifference):
+				
+				#There are no more sliders available
+				if !validSliders.size():
+					break
+			
+				var targetIndex = validSliders[i % validSliders.size()]
+				availableSlidersArray[targetIndex][0] += 1
+				
+				if availableSlidersArray[targetIndex][0] >= maxWagers:
+					validSliders.erase(targetIndex)
+			
+	#Applying these values
+	numWagerArray[1][0] += clampedDifference
+	
+	#Since arrays are passed by reference, the values within the numWagerArray have already correctly been changed.
+			
+	
+	#Updating the sliders themselves
+	relevantScreen.get_node(pathSliderA).value = numWagerArray[0][0]
+	relevantScreen.get_node(pathSliderB).value = numWagerArray[1][0]
+	relevantScreen.get_node(pathSliderC).value = numWagerArray[2][0]
+	
+	_update_display()
+	
+func distributeSliderC():
+	#How much the slider can be moved up or down by
+	var incrimentalSlideAllowance = 0
+	var decrementalSlideAllowance = 0
+	
+	#Storing the availables seperately
+	var availableSlidersArray = []
+	availableSlidersArray.clear()
+	
+	#Creating the availableSlidersArray
+	for i in range(numWagerArray.size()):
+		if i != 2 && numWagerArray[i][1] == true:
+			availableSlidersArray.append(numWagerArray[i])
+	
+	
+	#The requested change by the user
+	var difference = relevantScreen.get_node(pathSliderC).value - numWagerArray[2][0]
+	
+	#Add up the values from the other sliders to determine how much the selected slider can use
+	for i in range(availableSlidersArray.size()):
+		if availableSlidersArray[i][1]:
+			incrimentalSlideAllowance += availableSlidersArray[i][0]
+			
+			
+	#Add up how much the other sliders can be incrimented by
+	for i in range(availableSlidersArray.size()):
+		if availableSlidersArray[i][1]:
+			decrementalSlideAllowance += maxWagers - availableSlidersArray[i][0]
+			
+	#The minimum between how much the sliders can be incrimented
+	#And also how much the selected slider has to give
+	decrementalSlideAllowance = min(decrementalSlideAllowance, numWagerArray[2][0])
+	decrementalSlideAllowance = -decrementalSlideAllowance
+	
+	
+	#Ensuring the slider is moved within a legal limit
+	var clampedDifference = clamp(difference, decrementalSlideAllowance, incrimentalSlideAllowance)
+	
+	#The inverse must be applied to the OTHER sliders
+	var inverseClampedDifference = -clampedDifference
+	#And we can't forget about the remainder...
+	
+	if availableSlidersArray:
+		#var remainderInverseClampedDifference = int(inverseClampedDifference) % int(availableSlidersArray.size())
+	
+	#For loop iteration purposes
+		var absClampedDifference = abs(inverseClampedDifference)
+		
+		#Distributing negative difference
+		if inverseClampedDifference < 0:
+			
+			var validSliders = []
+			for j in range(availableSlidersArray.size()):
+				if availableSlidersArray[j][0] > 0:
+					validSliders.append(j)
+			
+			
+			for i in range(absClampedDifference):
+				if validSliders.size() == 0:
+					break
+					
+				var targetIndex = validSliders[i % validSliders.size()]
+				availableSlidersArray[targetIndex][0] -= 1
+				
+				if availableSlidersArray[targetIndex][0] <= 0:
+					validSliders.erase(targetIndex)
+					
+		#Distributing positive difference
+		if inverseClampedDifference > 0:
+			
+			var validSliders = []
+			for j in range(availableSlidersArray.size()):
+				if availableSlidersArray[j][0] < maxWagers:
+					validSliders.append(j)
+			
+			for i in range(absClampedDifference):
+				
+				#There are no more sliders available
+				if !validSliders.size():
+					break
+			
+				var targetIndex = validSliders[i % validSliders.size()]
+				availableSlidersArray[targetIndex][0] += 1
+				
+				if availableSlidersArray[targetIndex][0] >= maxWagers:
+					validSliders.erase(targetIndex)
+			
+	#Applying these values
+	numWagerArray[2][0] += clampedDifference
+	
+	#Since arrays are passed by reference, the values within the numWagerArray have already correctly been changed.
+			
+	
+	#Updating the sliders themselves
+	relevantScreen.get_node(pathSliderA).value = numWagerArray[0][0]
+	relevantScreen.get_node(pathSliderB).value = numWagerArray[1][0]
+	relevantScreen.get_node(pathSliderC).value = numWagerArray[2][0]
+	
+	_update_display()	
 	
 func _update_display():
 	
@@ -171,17 +454,17 @@ func _update_display():
 	relevantScreen.get_node(pathSliderMoneyB).text = "$" + str(valueWagerB)
 	relevantScreen.get_node(pathSliderMoneyC).text = "$" + str(valueWagerC)
 	
-	relevantScreen.get_node(pathSliderAmountA).text = str(numWagerArray[0]) + "x"
-	relevantScreen.get_node(pathSliderAmountB).text = str(numWagerArray[1]) + "x"
-	relevantScreen.get_node(pathSliderAmountC).text = str(numWagerArray[2]) + "x"
+	relevantScreen.get_node(pathSliderAmountA).text = str(numWagerArray[0][0]) + "x"
+	relevantScreen.get_node(pathSliderAmountB).text = str(numWagerArray[1][0]) + "x"
+	relevantScreen.get_node(pathSliderAmountC).text = str(numWagerArray[2][0]) + "x"
 	
 	relevantScreen.get_node(pathSliderA).max_value = maxWagers
 	relevantScreen.get_node(pathSliderB).max_value = maxWagers
 	relevantScreen.get_node(pathSliderC).max_value = maxWagers
 	
-	relevantScreen.get_node(pathSliderA).value = numWagerArray[0]
-	relevantScreen.get_node(pathSliderB).value = numWagerArray[1]
-	relevantScreen.get_node(pathSliderC).value = numWagerArray[2]
+	relevantScreen.get_node(pathSliderA).value = numWagerArray[0][0]
+	relevantScreen.get_node(pathSliderB).value = numWagerArray[1][0]
+	relevantScreen.get_node(pathSliderC).value = numWagerArray[2][0]
 	
 	#Probability C has additional math that fills in any inprecision because this is integer based division
 	#Basically if A% + B% + C% is less than 100, the remainder will be added to C to ensure the probabiltiies
