@@ -390,13 +390,12 @@ layout_mode = 2
 theme_type_variation = &"Subtitle"
 text = "Bin Width: "
 
-[node name="BinAmount" type="Label" parent="CenterContainer/PanelContainer/HBoxContainer/Outcomes/CenterContainer/VBoxContainer2/HBoxContainer2/PanelContainer/VBoxContainer2/HBoxContainer"]
-custom_minimum_size = Vector2(100, 0)
+[node name="BinEdit" type="LineEdit" parent="CenterContainer/PanelContainer/HBoxContainer/Outcomes/CenterContainer/VBoxContainer2/HBoxContainer2/PanelContainer/VBoxContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(90, 30)
 layout_mode = 2
-theme_type_variation = &"Mutable"
 text = "5"
-horizontal_alignment = 1
-vertical_alignment = 1
+alignment = 1
+max_length = 5
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/HBoxContainer/Outcomes/CenterContainer/VBoxContainer2/HBoxContainer2/PanelContainer/VBoxContainer2"]
 layout_mode = 2
@@ -410,13 +409,12 @@ layout_mode = 2
 theme_type_variation = &"Subtitle"
 text = "Trials:"
 
-[node name="BinAmount" type="Label" parent="CenterContainer/PanelContainer/HBoxContainer/Outcomes/CenterContainer/VBoxContainer2/HBoxContainer2/PanelContainer/VBoxContainer2/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(100, 0)
+[node name="TrialsEdit" type="LineEdit" parent="CenterContainer/PanelContainer/HBoxContainer/Outcomes/CenterContainer/VBoxContainer2/HBoxContainer2/PanelContainer/VBoxContainer2/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(90, 30)
 layout_mode = 2
-theme_type_variation = &"Mutable"
 text = "5"
-horizontal_alignment = 1
-vertical_alignment = 1
+alignment = 1
+max_length = 5
 
 [node name="PanelContainer2" type="PanelContainer" parent="CenterContainer/PanelContainer/HBoxContainer/Outcomes/CenterContainer/VBoxContainer2/HBoxContainer2"]
 layout_mode = 2
@@ -478,7 +476,7 @@ layout_mode = 2
 theme_type_variation = &"Subtitle"
 text = "Quota Requirement:"
 
-[node name="BinAmount" type="Label" parent="CenterContainer/PanelContainer/HBoxContainer/Outcomes/CenterContainer/VBoxContainer2/PanelContainer3/VBoxContainer2/HBoxContainer"]
+[node name="QuotaAmount" type="Label" parent="CenterContainer/PanelContainer/HBoxContainer/Outcomes/CenterContainer/VBoxContainer2/PanelContainer3/VBoxContainer2/HBoxContainer"]
 custom_minimum_size = Vector2(130, 0)
 layout_mode = 2
 theme_type_variation = &"Immutable"
@@ -497,3 +495,5 @@ text = "Graph Trials"
 [connection signal="button_up" from="CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer2/VBoxContainer/PanelContainerB/VBoxContainer/HBoxContainer/Panel/LockToggle" to="." method="_on_lock_toggle_B_button_up"]
 [connection signal="drag_ended" from="CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer2/VBoxContainer/PanelContainerC/VBoxContainer/HBoxContainer/Panel/WagerSlider" to="." method="_on_wager_sliderC_drag_ended"]
 [connection signal="button_up" from="CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer2/VBoxContainer/PanelContainerC/VBoxContainer/HBoxContainer/Panel/LockToggle" to="." method="_on_lock_toggle_C_button_up"]
+[connection signal="text_submitted" from="CenterContainer/PanelContainer/HBoxContainer/Outcomes/CenterContainer/VBoxContainer2/HBoxContainer2/PanelContainer/VBoxContainer2/HBoxContainer/BinEdit" to="." method="_on_bin_edit_text_submitted"]
+[connection signal="text_submitted" from="CenterContainer/PanelContainer/HBoxContainer/Outcomes/CenterContainer/VBoxContainer2/HBoxContainer2/PanelContainer/VBoxContainer2/VBoxContainer/HBoxContainer/TrialsEdit" to="." method="_on_trials_edit_text_submitted"]

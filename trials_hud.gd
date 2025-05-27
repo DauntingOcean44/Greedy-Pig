@@ -48,6 +48,8 @@ var pathLockToggleA = "CenterContainer/PanelContainer/HBoxContainer/Control/Cent
 var pathLockToggleB = "CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer2/VBoxContainer/PanelContainerB/VBoxContainer/HBoxContainer/Panel/LockToggle"
 var pathLockToggleC = "CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer2/VBoxContainer/PanelContainerC/VBoxContainer/HBoxContainer/Panel/LockToggle"
 
+var pathQuota = "CenterContainer/PanelContainer/HBoxContainer/Outcomes/CenterContainer/VBoxContainer2/PanelContainer3/VBoxContainer2/HBoxContainer/QuotaAmount"
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass
@@ -445,6 +447,9 @@ func _update_display():
 	
 	#Updating relevant screen (there are 10, this chooses the one being displayed)
 	relevantScreen = $Control/TabContainer.get_child(selectedTab).get_child(0)
+	
+	relevantScreen.get_node(pathQuota).text = str(quota)
+	
 	
 	relevantScreen.get_node(pathValueA).text = "$" + str(valueWagerA)
 	relevantScreen.get_node(pathValueB).text = "$" + str(valueWagerB)
