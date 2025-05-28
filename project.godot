@@ -31,6 +31,8 @@ wager_amount="The player's chosen wager."
 wager_button="Used to toggle buttons on & off"
 match_button=""
 trials_hud="To signal the trials hud."
+histogram=""
+trials_content=""
 
 [gui]
 

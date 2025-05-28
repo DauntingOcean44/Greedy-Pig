@@ -8,6 +8,11 @@ var selectedTab
 #Currently selected amount of each wager
 var numWagerArray = []
 
+#Simultated array of quotas
+var quotaArray = []
+var quotaMin = INF
+var quotaMax = 0
+
 
 #The value of each wager (and also the veto)
 var valueWagerA
@@ -21,6 +26,14 @@ var vetoWeightC
 
 #Identical to the information found in the main data dictionary
 var dataDict
+
+#For graphing & simulation purposes
+var binWidth = 0
+var trials = 0
+
+#Theoretical calculations
+var averageValue: float = 0.0
+var averageQuota: float = 0.0
 
 #Declaring paths, and which of the 10 screens to edit
 var relevantScreen
@@ -50,6 +63,12 @@ var pathLockToggleC = "CenterContainer/PanelContainer/HBoxContainer/Control/Cent
 
 var pathQuota = "CenterContainer/PanelContainer/HBoxContainer/Outcomes/CenterContainer/VBoxContainer2/PanelContainer3/VBoxContainer2/HBoxContainer/QuotaAmount"
 
+var pathAverageValue = "CenterContainer/PanelContainer/HBoxContainer/Outcomes/CenterContainer/VBoxContainer2/HBoxContainer2/PanelContainer2/VBoxContainer2/HBoxContainer/AverageValue"
+var pathAverageQuota = "CenterContainer/PanelContainer/HBoxContainer/Outcomes/CenterContainer/VBoxContainer2/HBoxContainer2/PanelContainer2/VBoxContainer2/VBoxContainer/HBoxContainer/AverageQuota"
+
+var pathBinWidth = "CenterContainer/PanelContainer/HBoxContainer/Outcomes/CenterContainer/VBoxContainer2/HBoxContainer2/PanelContainer/VBoxContainer2/HBoxContainer/BinEdit"
+var pathTrialsAmount = "CenterContainer/PanelContainer/HBoxContainer/Outcomes/CenterContainer/VBoxContainer2/HBoxContainer2/PanelContainer/VBoxContainer2/VBoxContainer/HBoxContainer/TrialsEdit"
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass
@@ -59,17 +78,28 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	pass	
 	
+	
 func _get_data(getDataDict):
 	dataDict = getDataDict
+	get_tree().call_group("histogram", "clear_data")
 	_pull_match_data(0)
-	_update_display()
+	_pull_line_data(5, "binWidth")
+	_pull_line_data(500, "trials")
+	_simulate_trials()
 	_reset_sliders()
+	_calc_averages()
+	_update_display()
 	
 #Upon switching tabs
 func _on_tab_container_tab_clicked(tab: int):
+	get_tree().call_group("histogram", "clear_data")
 	_pull_match_data(tab)
-	_update_display()
+	_pull_line_data(5, "binWidth")
+	_pull_line_data(500, "trials")
+	_simulate_trials()
 	_reset_sliders()
+	_calc_averages()
+	_update_display()
 
 
 func _reset_sliders():
@@ -79,7 +109,85 @@ func _reset_sliders():
 		_toggle_slider_B()
 	if !numWagerArray[2][1]:
 		_toggle_slider_C()
+
+
+func _calc_averages():
+	var expectedValA: float
+	var expectedValB: float
+	var expectedValC: float
+	var weightSum = vetoWeightA + vetoWeightB + vetoWeightC
+
+	#Average value calculation
+	expectedValA = (valueWagerA * (((weightSum - vetoWeightA)* 100) / weightSum))
+	expectedValA /= 100 
+	expectedValB = (valueWagerB * (((weightSum - vetoWeightB)* 100) / weightSum))
+	expectedValB /= 100 
+	expectedValC = (valueWagerC * (((weightSum - vetoWeightC)* 100) / weightSum))
+	expectedValC /= 100 
+	
+	averageValue = (expectedValA * (float(numWagerArray[0][0]) / float(maxWagers))) + (expectedValB * (float(numWagerArray[1][0]) / float(maxWagers))) + (expectedValC * (float(numWagerArray[2][0]) / float(maxWagers)))
+	averageQuota = averageValue * maxWagers
+	
+	averageValue = snapped(averageValue, 0.01) if averageValue < 10 else snapped(averageValue, 0)
+	averageQuota = snapped(averageQuota, 0)
+
+func _graph_trials():
+	_simulate_trials()
+	get_tree().call_group("histogram", "_import_data", binWidth, quotaMin, quotaMax, quotaArray, trials)
+
+func _simulate_trials():
+	quotaArray.clear()
+	quotaMin = INF
+	quotaMax = 0
+	
+	#Creating an array of the selected values
+	var chosenWagerDictArray = []
+	
+	#Used in randf-range success simulator
+	var totalWeight = vetoWeightA + vetoWeightB + vetoWeightC
+	
+	#Looping through the numWagerArray to create data
+	for i in range(numWagerArray[0][0]):
+		chosenWagerDictArray.append({"wager": valueWagerA, "success": totalWeight - vetoWeightA})
 		
+	for i in range(numWagerArray[1][0]):
+		chosenWagerDictArray.append({"wager": valueWagerB, "success": totalWeight - vetoWeightB})
+		
+	for i in range(numWagerArray[2][0]):
+		chosenWagerDictArray.append({"wager": valueWagerC, "success": totalWeight - vetoWeightC})
+		
+	#Main trials loop
+	for i in range(trials):
+		
+		#Where the successful wagers indices will be recorded
+		var successArray = []
+		var trialQuota = 0
+		
+		#Single match loop
+		for j in range(maxWagers):
+			var randInt = floor(randf_range(1, totalWeight + 1))
+			
+			#Recording the indice of a successful wager
+			if chosenWagerDictArray[j]["success"] >= randInt:
+				successArray.append(j)
+				
+		for j in range(successArray.size()):
+			trialQuota += chosenWagerDictArray[successArray[j]]["wager"]
+		
+		#Setting the histogram's min and max
+		quotaMin = min(quotaMin, trialQuota)
+		quotaMax = max(quotaMax, trialQuota)
+		quotaArray.append(float(trialQuota)) 
+		
+	#print(quotaArray)
+	#print(chosenWagerDictArray)
+
+#Update data from text input
+func _pull_line_data(value, source):
+	if source == "binWidth":
+		binWidth = value
+	elif source == "trials":
+		trials = value
 
 #Pull tab data
 func _pull_match_data(tab):
@@ -108,7 +216,7 @@ func _pull_match_data(tab):
 	for i in range(numWagerRemainder):
 		numWagerArray[i % 3][0] += 1
 	
-	print(numWagerArray)
+	
 	
 	
 func _toggle_slider_A():
@@ -240,7 +348,9 @@ func distributeSliderA():
 	relevantScreen.get_node(pathSliderB).value = numWagerArray[1][0]
 	relevantScreen.get_node(pathSliderC).value = numWagerArray[2][0]
 	
+	_calc_averages()
 	_update_display()
+	
 	
 	
 func distributeSliderB():
@@ -341,7 +451,9 @@ func distributeSliderB():
 	relevantScreen.get_node(pathSliderB).value = numWagerArray[1][0]
 	relevantScreen.get_node(pathSliderC).value = numWagerArray[2][0]
 	
+	_calc_averages()
 	_update_display()
+	
 	
 func distributeSliderC():
 	#How much the slider can be moved up or down by
@@ -441,7 +553,9 @@ func distributeSliderC():
 	relevantScreen.get_node(pathSliderB).value = numWagerArray[1][0]
 	relevantScreen.get_node(pathSliderC).value = numWagerArray[2][0]
 	
-	_update_display()	
+	_calc_averages()
+	_update_display()
+	
 	
 func _update_display():
 	
@@ -471,9 +585,16 @@ func _update_display():
 	relevantScreen.get_node(pathSliderB).value = numWagerArray[1][0]
 	relevantScreen.get_node(pathSliderC).value = numWagerArray[2][0]
 	
+	relevantScreen.get_node(pathAverageValue).text = str(averageValue)
+	relevantScreen.get_node(pathAverageQuota).text = str(averageQuota)
+	
+	relevantScreen.get_node(pathBinWidth).text = str(binWidth)
+	relevantScreen.get_node(pathTrialsAmount).text = str(trials)
+	
 	#Probability C has additional math that fills in any inprecision because this is integer based division
 	#Basically if A% + B% + C% is less than 100, the remainder will be added to C to ensure the probabiltiies
 	#Always add up to 100. Don't try to decipher it, it'll make your head hurt from all the brackets.
 	relevantScreen.get_node(pathChanceA).text = str((vetoWeightA * 100) / ((vetoWeightA + vetoWeightB + vetoWeightC) * 1)) + "%"
 	relevantScreen.get_node(pathChanceB).text = str((vetoWeightB * 100) / ((vetoWeightA + vetoWeightB + vetoWeightC) * 1)) + "%"
 	relevantScreen.get_node(pathChanceC).text = str(((vetoWeightC * 100) / ((vetoWeightA + vetoWeightB + vetoWeightC) * 1) + (100 % ((vetoWeightA * 100) / ((vetoWeightA + vetoWeightB + vetoWeightC) * 1) + (vetoWeightB * 100) / ((vetoWeightA + vetoWeightB + vetoWeightC) * 1) + (vetoWeightC * 100) / ((vetoWeightA + vetoWeightB + vetoWeightC) * 1))))) + "%"
+	

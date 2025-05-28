@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://2d3sjmjowgru" path="res://histogram.tscn" id="2_fmn4v"]
 [ext_resource type="Texture2D" uid="uid://cl86g5wno8rfl" path="res://sprites/unlocked.png" id="2_ichbf"]
 
-[node name="trials_content" type="Control"]
+[node name="trials_content" type="Control" groups=["trials_content"]]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -388,7 +388,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 theme_type_variation = &"Subtitle"
-text = "Bin Width: "
+text = "Bins: "
 
 [node name="BinEdit" type="LineEdit" parent="CenterContainer/PanelContainer/HBoxContainer/Outcomes/CenterContainer/VBoxContainer2/HBoxContainer2/PanelContainer/VBoxContainer2/HBoxContainer"]
 custom_minimum_size = Vector2(90, 30)
@@ -412,7 +412,7 @@ text = "Trials:"
 [node name="TrialsEdit" type="LineEdit" parent="CenterContainer/PanelContainer/HBoxContainer/Outcomes/CenterContainer/VBoxContainer2/HBoxContainer2/PanelContainer/VBoxContainer2/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(90, 30)
 layout_mode = 2
-text = "5"
+text = "500"
 alignment = 1
 max_length = 5
 
@@ -432,8 +432,8 @@ layout_mode = 2
 theme_type_variation = &"Subtitle"
 text = "Avg. Value: "
 
-[node name="BinAmount" type="Label" parent="CenterContainer/PanelContainer/HBoxContainer/Outcomes/CenterContainer/VBoxContainer2/HBoxContainer2/PanelContainer2/VBoxContainer2/HBoxContainer"]
-custom_minimum_size = Vector2(100, 0)
+[node name="AverageValue" type="Label" parent="CenterContainer/PanelContainer/HBoxContainer/Outcomes/CenterContainer/VBoxContainer2/HBoxContainer2/PanelContainer2/VBoxContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(110, 0)
 layout_mode = 2
 theme_type_variation = &"Immutable"
 text = "5"
@@ -452,8 +452,8 @@ layout_mode = 2
 theme_type_variation = &"Subtitle"
 text = "Avg. Quota:"
 
-[node name="BinAmount" type="Label" parent="CenterContainer/PanelContainer/HBoxContainer/Outcomes/CenterContainer/VBoxContainer2/HBoxContainer2/PanelContainer2/VBoxContainer2/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(100, 0)
+[node name="AverageQuota" type="Label" parent="CenterContainer/PanelContainer/HBoxContainer/Outcomes/CenterContainer/VBoxContainer2/HBoxContainer2/PanelContainer2/VBoxContainer2/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(110, 0)
 layout_mode = 2
 theme_type_variation = &"Immutable"
 text = "5"
@@ -497,3 +497,4 @@ text = "Graph Trials"
 [connection signal="button_up" from="CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer2/VBoxContainer/PanelContainerC/VBoxContainer/HBoxContainer/Panel/LockToggle" to="." method="_on_lock_toggle_C_button_up"]
 [connection signal="text_submitted" from="CenterContainer/PanelContainer/HBoxContainer/Outcomes/CenterContainer/VBoxContainer2/HBoxContainer2/PanelContainer/VBoxContainer2/HBoxContainer/BinEdit" to="." method="_on_bin_edit_text_submitted"]
 [connection signal="text_submitted" from="CenterContainer/PanelContainer/HBoxContainer/Outcomes/CenterContainer/VBoxContainer2/HBoxContainer2/PanelContainer/VBoxContainer2/VBoxContainer/HBoxContainer/TrialsEdit" to="." method="_on_trials_edit_text_submitted"]
+[connection signal="button_up" from="CenterContainer/PanelContainer/HBoxContainer/Outcomes/CenterContainer/VBoxContainer2/PanelContainer3/VBoxContainer2/HBoxContainer/Button" to="." method="_on_graph_trials_button_up"]

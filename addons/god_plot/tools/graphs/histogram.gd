@@ -83,6 +83,46 @@ enum OUTLIER {
 
 var plotter = HistogramPlotter.new(self)
 
+
+func _import_data(bin, min, max, dataArray, trials):
+	
+	#Setting properties
+	#bin_size = bin
+	setBinSize = bin
+	setBinSize -= 1
+	setBinSize = clamp(setBinSize, 1, INF)
+	setMaxSize = max
+	setDataArray = dataArray
+	setTrials = trials
+	
+	bin_size = round(float(setMaxSize) / float(setBinSize) - 1)
+	print(bin_size)
+	#x_max = max
+	#$HistogramSeries.set_data(dataArray)
+	
+	#var histogram_series = $HistogramSeries as HistogramSeries
+	if canDraw:
+		draw_the_histogram()
+		canDraw = false
+		get_tree().call_group("trials_content", "disable_graph_button")
+		$DrawCooldown.start()
+
+
+func draw_the_histogram():
+	$HistogramSeries.clear_data()
+	for value in setDataArray:
+		$HistogramSeries.add_point(value)
+	
+func _on_draw_cooldown_timeout():
+	canDraw = true
+	get_tree().call_group("trials_content", "enable_graph_button")
+	
+var setBinSize
+var setMaxSize
+var setDataArray
+var canDraw = true
+var setTrials = 0
+
 func _ready() -> void:
 	super._ready()
 	_setup_plotter()
@@ -96,8 +136,7 @@ func _setup_plotter():
 
 func _connect_plotter_to_axes_with_deferred_plotting():
 	pair_of_axes.draw.connect(
-		plotter.call_deferred.bind("plot_all", series_container.get_all_series())
-		)
+		plotter.call_deferred.bind("plot_all", series_container.get_all_series()))
 
 func _load_children_series():
 	if !is_inside_tree(): return
@@ -120,9 +159,7 @@ func _update_graph_limits() -> void:
 	var min_limits = Vector2(x_min, 0)
 	var max_limits = Vector2(x_max, y_max)
 	
-	var data_max_y = Rounder.ceil_num_to_decimal_place(
-		series_container.max_value.y, y_decimal_places
-		)
+	var data_max_y = setTrials
 	max_limits = max_limits.max(Vector2(x_max, data_max_y))
 	
 	if outlier_behavior == OUTLIER.FIT:
