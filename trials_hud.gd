@@ -35,31 +35,35 @@ var trials = 0
 var averageValue: float = 0.0
 var averageQuota: float = 0.0
 
+#Theoretical vs experimental probabilities
+var experimentalProbability = 0.0
+var theoreticalProbability = 0.0
+
 #Declaring paths, and which of the 10 screens to edit
 var relevantScreen
-var pathValueA = "CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer/VBoxContainer/CenterContainer/PanelContainer/GridContainer/Value1"
-var pathValueB = "CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer/VBoxContainer/CenterContainer/PanelContainer/GridContainer/Value2"
-var pathValueC = "CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer/VBoxContainer/CenterContainer/PanelContainer/GridContainer/Value3"
+var pathValueA = "CenterContainer/PanelContainer/HBoxContainer/Control/ScrollContainer/CenterContainer/VBoxContainer/PanelContainer/VBoxContainer/CenterContainer/PanelContainer/GridContainer/Value1"
+var pathValueB = "CenterContainer/PanelContainer/HBoxContainer/Control/ScrollContainer/CenterContainer/VBoxContainer/PanelContainer/VBoxContainer/CenterContainer/PanelContainer/GridContainer/Value2"
+var pathValueC = "CenterContainer/PanelContainer/HBoxContainer/Control/ScrollContainer/CenterContainer/VBoxContainer/PanelContainer/VBoxContainer/CenterContainer/PanelContainer/GridContainer/Value3"
 
-var pathSliderMoneyA = "CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer2/VBoxContainer/PanelContainerA/VBoxContainer/HBoxContainer/Money"
-var pathSliderMoneyB = "CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer2/VBoxContainer/PanelContainerB/VBoxContainer/HBoxContainer/Money"
-var pathSliderMoneyC = "CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer2/VBoxContainer/PanelContainerC/VBoxContainer/HBoxContainer/Money"
+var pathSliderMoneyA = "CenterContainer/PanelContainer/HBoxContainer/Control/ScrollContainer/CenterContainer/VBoxContainer/PanelContainer2/VBoxContainer/PanelContainerA/VBoxContainer/HBoxContainer/Money"
+var pathSliderMoneyB = "CenterContainer/PanelContainer/HBoxContainer/Control/ScrollContainer/CenterContainer/VBoxContainer/PanelContainer2/VBoxContainer/PanelContainerB/VBoxContainer/HBoxContainer/Money"
+var pathSliderMoneyC = "CenterContainer/PanelContainer/HBoxContainer/Control/ScrollContainer/CenterContainer/VBoxContainer/PanelContainer2/VBoxContainer/PanelContainerC/VBoxContainer/HBoxContainer/Money"
 
-var pathChanceA = "CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer/VBoxContainer/CenterContainer/PanelContainer/GridContainer/Chance1"
-var pathChanceB = "CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer/VBoxContainer/CenterContainer/PanelContainer/GridContainer/Chance2"
-var pathChanceC = "CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer/VBoxContainer/CenterContainer/PanelContainer/GridContainer/Chance3"
+var pathChanceA = "CenterContainer/PanelContainer/HBoxContainer/Control/ScrollContainer/CenterContainer/VBoxContainer/PanelContainer/VBoxContainer/CenterContainer/PanelContainer/GridContainer/Chance1"
+var pathChanceB = "CenterContainer/PanelContainer/HBoxContainer/Control/ScrollContainer/CenterContainer/VBoxContainer/PanelContainer/VBoxContainer/CenterContainer/PanelContainer/GridContainer/Chance2"
+var pathChanceC = "CenterContainer/PanelContainer/HBoxContainer/Control/ScrollContainer/CenterContainer/VBoxContainer/PanelContainer/VBoxContainer/CenterContainer/PanelContainer/GridContainer/Chance3"
 
-var pathSliderA = "CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer2/VBoxContainer/PanelContainerA/VBoxContainer/HBoxContainer/Panel/WagerSlider"
-var pathSliderB = "CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer2/VBoxContainer/PanelContainerB/VBoxContainer/HBoxContainer/Panel/WagerSlider"
-var pathSliderC = "CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer2/VBoxContainer/PanelContainerC/VBoxContainer/HBoxContainer/Panel/WagerSlider"
+var pathSliderA = "CenterContainer/PanelContainer/HBoxContainer/Control/ScrollContainer/CenterContainer/VBoxContainer/PanelContainer2/VBoxContainer/PanelContainerA/VBoxContainer/HBoxContainer/Panel/WagerSlider"
+var pathSliderB = "CenterContainer/PanelContainer/HBoxContainer/Control/ScrollContainer/CenterContainer/VBoxContainer/PanelContainer2/VBoxContainer/PanelContainerB/VBoxContainer/HBoxContainer/Panel/WagerSlider"
+var pathSliderC = "CenterContainer/PanelContainer/HBoxContainer/Control/ScrollContainer/CenterContainer/VBoxContainer/PanelContainer2/VBoxContainer/PanelContainerC/VBoxContainer/HBoxContainer/Panel/WagerSlider"
 
-var pathSliderAmountA = "CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer2/VBoxContainer/PanelContainerA/VBoxContainer/HBoxContainer/Amount"
-var pathSliderAmountB = "CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer2/VBoxContainer/PanelContainerB/VBoxContainer/HBoxContainer/Amount"
-var pathSliderAmountC = "CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer2/VBoxContainer/PanelContainerC/VBoxContainer/HBoxContainer/Amount"
+var pathSliderAmountA = "CenterContainer/PanelContainer/HBoxContainer/Control/ScrollContainer/CenterContainer/VBoxContainer/PanelContainer2/VBoxContainer/PanelContainerA/VBoxContainer/HBoxContainer/Amount"
+var pathSliderAmountB = "CenterContainer/PanelContainer/HBoxContainer/Control/ScrollContainer/CenterContainer/VBoxContainer/PanelContainer2/VBoxContainer/PanelContainerB/VBoxContainer/HBoxContainer/Amount"
+var pathSliderAmountC = "CenterContainer/PanelContainer/HBoxContainer/Control/ScrollContainer/CenterContainer/VBoxContainer/PanelContainer2/VBoxContainer/PanelContainerC/VBoxContainer/HBoxContainer/Amount"
 
-var pathLockToggleA = "CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer2/VBoxContainer/PanelContainerA/VBoxContainer/HBoxContainer/Panel/LockToggle"
-var pathLockToggleB = "CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer2/VBoxContainer/PanelContainerB/VBoxContainer/HBoxContainer/Panel/LockToggle"
-var pathLockToggleC = "CenterContainer/PanelContainer/HBoxContainer/Control/CenterContainer/VBoxContainer/PanelContainer2/VBoxContainer/PanelContainerC/VBoxContainer/HBoxContainer/Panel/LockToggle"
+var pathLockToggleA = "CenterContainer/PanelContainer/HBoxContainer/Control/ScrollContainer/CenterContainer/VBoxContainer/PanelContainer2/VBoxContainer/PanelContainerA/VBoxContainer/HBoxContainer/Panel/LockToggle"
+var pathLockToggleB = "CenterContainer/PanelContainer/HBoxContainer/Control/ScrollContainer/CenterContainer/VBoxContainer/PanelContainer2/VBoxContainer/PanelContainerB/VBoxContainer/HBoxContainer/Panel/LockToggle"
+var pathLockToggleC = "CenterContainer/PanelContainer/HBoxContainer/Control/ScrollContainer/CenterContainer/VBoxContainer/PanelContainer2/VBoxContainer/PanelContainerC/VBoxContainer/HBoxContainer/Panel/LockToggle"
 
 var pathQuota = "CenterContainer/PanelContainer/HBoxContainer/Outcomes/CenterContainer/VBoxContainer2/PanelContainer3/VBoxContainer2/HBoxContainer/QuotaAmount"
 
@@ -68,6 +72,10 @@ var pathAverageQuota = "CenterContainer/PanelContainer/HBoxContainer/Outcomes/Ce
 
 var pathBinWidth = "CenterContainer/PanelContainer/HBoxContainer/Outcomes/CenterContainer/VBoxContainer2/HBoxContainer2/PanelContainer/VBoxContainer2/HBoxContainer/BinEdit"
 var pathTrialsAmount = "CenterContainer/PanelContainer/HBoxContainer/Outcomes/CenterContainer/VBoxContainer2/HBoxContainer2/PanelContainer/VBoxContainer2/VBoxContainer/HBoxContainer/TrialsEdit"
+
+var pathExperimentalProbability = "CenterContainer/PanelContainer/HBoxContainer/Control/ScrollContainer/CenterContainer/VBoxContainer/PanelContainer3/VBoxContainer/CenterContainer/PanelContainer/GridContainer/ExperimentalChance"
+var pathTheoreticalProbability = "CenterContainer/PanelContainer/HBoxContainer/Control/ScrollContainer/CenterContainer/VBoxContainer/PanelContainer3/VBoxContainer/CenterContainer/PanelContainer/GridContainer/TheoreticalChance"
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -133,12 +141,17 @@ func _calc_averages():
 
 func _graph_trials():
 	_simulate_trials()
+	_update_display()
+	
 	get_tree().call_group("histogram", "_import_data", binWidth, quotaMin, quotaMax, quotaArray, trials)
 
 func _simulate_trials():
 	quotaArray.clear()
 	quotaMin = INF
 	quotaMax = 0
+	
+	#of trials that meet or exceed the quota
+	var successfulTrials = 0
 	
 	#Creating an array of the selected values
 	var chosenWagerDictArray = []
@@ -177,7 +190,15 @@ func _simulate_trials():
 		#Setting the histogram's min and max
 		quotaMin = min(quotaMin, trialQuota)
 		quotaMax = max(quotaMax, trialQuota)
+		
+		#Counting successful quotas
+		successfulTrials += 1 if trialQuota >= quota else 0
 		quotaArray.append(float(trialQuota)) 
+		
+	#Calculating experimental probability
+	experimentalProbability = float(successfulTrials) / float(trials)
+	experimentalProbability *= 100
+	experimentalProbability = snapped(experimentalProbability, 0.01) if experimentalProbability < 10 else snapped(experimentalProbability, 0)
 		
 	#print(quotaArray)
 	#print(chosenWagerDictArray)
@@ -349,6 +370,7 @@ func distributeSliderA():
 	relevantScreen.get_node(pathSliderC).value = numWagerArray[2][0]
 	
 	_calc_averages()
+	_simulate_trials()
 	_update_display()
 	
 	
@@ -452,6 +474,7 @@ func distributeSliderB():
 	relevantScreen.get_node(pathSliderC).value = numWagerArray[2][0]
 	
 	_calc_averages()
+	_simulate_trials()
 	_update_display()
 	
 	
@@ -554,6 +577,7 @@ func distributeSliderC():
 	relevantScreen.get_node(pathSliderC).value = numWagerArray[2][0]
 	
 	_calc_averages()
+	_simulate_trials()
 	_update_display()
 	
 	
@@ -590,6 +614,8 @@ func _update_display():
 	
 	relevantScreen.get_node(pathBinWidth).text = str(binWidth)
 	relevantScreen.get_node(pathTrialsAmount).text = str(trials)
+	
+	relevantScreen.get_node(pathExperimentalProbability).text = str(experimentalProbability) + "%"
 	
 	#Probability C has additional math that fills in any inprecision because this is integer based division
 	#Basically if A% + B% + C% is less than 100, the remainder will be added to C to ensure the probabiltiies

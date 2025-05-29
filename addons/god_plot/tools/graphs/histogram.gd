@@ -96,7 +96,6 @@ func _import_data(bin, min, max, dataArray, trials):
 	setTrials = trials
 	
 	bin_size = round(float(setMaxSize) / float(setBinSize) - 1)
-	print(bin_size)
 	#x_max = max
 	#$HistogramSeries.set_data(dataArray)
 	
