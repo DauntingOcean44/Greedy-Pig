@@ -368,15 +368,18 @@ vertical_alignment = 1
 [node name="CenterContainer" type="CenterContainer" parent="CenterContainer/PanelContainer/HBoxContainer/Control/ScrollContainer/CenterContainer/VBoxContainer/PanelContainer3/VBoxContainer"]
 layout_mode = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="CenterContainer/PanelContainer/HBoxContainer/Control/ScrollContainer/CenterContainer/VBoxContainer/PanelContainer3/VBoxContainer/CenterContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/HBoxContainer/Control/ScrollContainer/CenterContainer/VBoxContainer/PanelContainer3/VBoxContainer/CenterContainer"]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer/PanelContainer/HBoxContainer/Control/ScrollContainer/CenterContainer/VBoxContainer/PanelContainer3/VBoxContainer/CenterContainer/VBoxContainer"]
 layout_mode = 2
 theme_type_variation = &"PanelContainerSlider"
 
-[node name="GridContainer" type="GridContainer" parent="CenterContainer/PanelContainer/HBoxContainer/Control/ScrollContainer/CenterContainer/VBoxContainer/PanelContainer3/VBoxContainer/CenterContainer/PanelContainer"]
+[node name="GridContainer" type="GridContainer" parent="CenterContainer/PanelContainer/HBoxContainer/Control/ScrollContainer/CenterContainer/VBoxContainer/PanelContainer3/VBoxContainer/CenterContainer/VBoxContainer/PanelContainer"]
 layout_mode = 2
 columns = 2
 
-[node name="Type" type="Label" parent="CenterContainer/PanelContainer/HBoxContainer/Control/ScrollContainer/CenterContainer/VBoxContainer/PanelContainer3/VBoxContainer/CenterContainer/PanelContainer/GridContainer"]
+[node name="Type" type="Label" parent="CenterContainer/PanelContainer/HBoxContainer/Control/ScrollContainer/CenterContainer/VBoxContainer/PanelContainer3/VBoxContainer/CenterContainer/VBoxContainer/PanelContainer/GridContainer"]
 layout_mode = 2
 size_flags_vertical = 6
 theme_type_variation = &"Subtitle"
@@ -384,14 +387,14 @@ text = "Probability Model"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Chance" type="Label" parent="CenterContainer/PanelContainer/HBoxContainer/Control/ScrollContainer/CenterContainer/VBoxContainer/PanelContainer3/VBoxContainer/CenterContainer/PanelContainer/GridContainer"]
+[node name="Chance" type="Label" parent="CenterContainer/PanelContainer/HBoxContainer/Control/ScrollContainer/CenterContainer/VBoxContainer/PanelContainer3/VBoxContainer/CenterContainer/VBoxContainer/PanelContainer/GridContainer"]
 layout_mode = 2
 size_flags_vertical = 6
 text = "Chance"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Value1" type="Label" parent="CenterContainer/PanelContainer/HBoxContainer/Control/ScrollContainer/CenterContainer/VBoxContainer/PanelContainer3/VBoxContainer/CenterContainer/PanelContainer/GridContainer"]
+[node name="Value1" type="Label" parent="CenterContainer/PanelContainer/HBoxContainer/Control/ScrollContainer/CenterContainer/VBoxContainer/PanelContainer3/VBoxContainer/CenterContainer/VBoxContainer/PanelContainer/GridContainer"]
 custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -403,7 +406,7 @@ text = "Experimental
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ExperimentalChance" type="Label" parent="CenterContainer/PanelContainer/HBoxContainer/Control/ScrollContainer/CenterContainer/VBoxContainer/PanelContainer3/VBoxContainer/CenterContainer/PanelContainer/GridContainer"]
+[node name="ExperimentalChance" type="Label" parent="CenterContainer/PanelContainer/HBoxContainer/Control/ScrollContainer/CenterContainer/VBoxContainer/PanelContainer3/VBoxContainer/CenterContainer/VBoxContainer/PanelContainer/GridContainer"]
 custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -415,7 +418,7 @@ text = "Null
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Value2" type="Label" parent="CenterContainer/PanelContainer/HBoxContainer/Control/ScrollContainer/CenterContainer/VBoxContainer/PanelContainer3/VBoxContainer/CenterContainer/PanelContainer/GridContainer"]
+[node name="Value2" type="Label" parent="CenterContainer/PanelContainer/HBoxContainer/Control/ScrollContainer/CenterContainer/VBoxContainer/PanelContainer3/VBoxContainer/CenterContainer/VBoxContainer/PanelContainer/GridContainer"]
 custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -427,7 +430,7 @@ text = "Theoretical
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TheoreticalChance" type="Label" parent="CenterContainer/PanelContainer/HBoxContainer/Control/ScrollContainer/CenterContainer/VBoxContainer/PanelContainer3/VBoxContainer/CenterContainer/PanelContainer/GridContainer"]
+[node name="TheoreticalChance" type="Label" parent="CenterContainer/PanelContainer/HBoxContainer/Control/ScrollContainer/CenterContainer/VBoxContainer/PanelContainer3/VBoxContainer/CenterContainer/VBoxContainer/PanelContainer/GridContainer"]
 custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -437,6 +440,14 @@ theme_type_variation = &"Immutable"
 text = "Null"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/PanelContainer/HBoxContainer/Control/ScrollContainer/CenterContainer/VBoxContainer/PanelContainer3/VBoxContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="CenterContainer/PanelContainer/HBoxContainer/Control/ScrollContainer/CenterContainer/VBoxContainer/PanelContainer3/VBoxContainer/CenterContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Calculate Theoretical Trials"
 
 [node name="Outcomes" type="Control" parent="CenterContainer/PanelContainer/HBoxContainer"]
 custom_minimum_size = Vector2(500, 0)
@@ -587,6 +598,7 @@ text = "Graph Trials"
 [connection signal="button_up" from="CenterContainer/PanelContainer/HBoxContainer/Control/ScrollContainer/CenterContainer/VBoxContainer/PanelContainer2/VBoxContainer/PanelContainerB/VBoxContainer/HBoxContainer/Panel/LockToggle" to="." method="_on_lock_toggle_B_button_up"]
 [connection signal="drag_ended" from="CenterContainer/PanelContainer/HBoxContainer/Control/ScrollContainer/CenterContainer/VBoxContainer/PanelContainer2/VBoxContainer/PanelContainerC/VBoxContainer/HBoxContainer/Panel/WagerSlider" to="." method="_on_wager_sliderC_drag_ended"]
 [connection signal="button_up" from="CenterContainer/PanelContainer/HBoxContainer/Control/ScrollContainer/CenterContainer/VBoxContainer/PanelContainer2/VBoxContainer/PanelContainerC/VBoxContainer/HBoxContainer/Panel/LockToggle" to="." method="_on_lock_toggle_C_button_up"]
+[connection signal="button_up" from="CenterContainer/PanelContainer/HBoxContainer/Control/ScrollContainer/CenterContainer/VBoxContainer/PanelContainer3/VBoxContainer/CenterContainer/VBoxContainer/HBoxContainer/Button" to="." method="_on_theoretical_button_up"]
 [connection signal="text_submitted" from="CenterContainer/PanelContainer/HBoxContainer/Outcomes/CenterContainer/VBoxContainer2/HBoxContainer2/PanelContainer/VBoxContainer2/HBoxContainer/BinEdit" to="." method="_on_bin_edit_text_submitted"]
 [connection signal="text_submitted" from="CenterContainer/PanelContainer/HBoxContainer/Outcomes/CenterContainer/VBoxContainer2/HBoxContainer2/PanelContainer/VBoxContainer2/VBoxContainer/HBoxContainer/TrialsEdit" to="." method="_on_trials_edit_text_submitted"]
 [connection signal="button_up" from="CenterContainer/PanelContainer/HBoxContainer/Outcomes/CenterContainer/VBoxContainer2/PanelContainer3/VBoxContainer2/HBoxContainer/Button" to="." method="_on_graph_trials_button_up"]

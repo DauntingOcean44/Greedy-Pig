@@ -73,9 +73,9 @@ var pathAverageQuota = "CenterContainer/PanelContainer/HBoxContainer/Outcomes/Ce
 var pathBinWidth = "CenterContainer/PanelContainer/HBoxContainer/Outcomes/CenterContainer/VBoxContainer2/HBoxContainer2/PanelContainer/VBoxContainer2/HBoxContainer/BinEdit"
 var pathTrialsAmount = "CenterContainer/PanelContainer/HBoxContainer/Outcomes/CenterContainer/VBoxContainer2/HBoxContainer2/PanelContainer/VBoxContainer2/VBoxContainer/HBoxContainer/TrialsEdit"
 
-var pathExperimentalProbability = "CenterContainer/PanelContainer/HBoxContainer/Control/ScrollContainer/CenterContainer/VBoxContainer/PanelContainer3/VBoxContainer/CenterContainer/PanelContainer/GridContainer/ExperimentalChance"
-var pathTheoreticalProbability = "CenterContainer/PanelContainer/HBoxContainer/Control/ScrollContainer/CenterContainer/VBoxContainer/PanelContainer3/VBoxContainer/CenterContainer/PanelContainer/GridContainer/TheoreticalChance"
-
+var pathExperimentalProbability = "CenterContainer/PanelContainer/HBoxContainer/Control/ScrollContainer/CenterContainer/VBoxContainer/PanelContainer3/VBoxContainer/CenterContainer/VBoxContainer/PanelContainer/GridContainer/ExperimentalChance"
+var pathTheoreticalProbability = "CenterContainer/PanelContainer/HBoxContainer/Control/ScrollContainer/CenterContainer/VBoxContainer/PanelContainer3/VBoxContainer/CenterContainer/VBoxContainer/PanelContainer/GridContainer/TheoreticalChance"
+var pathTheoreticalProbabilityButton = "CenterContainer/PanelContainer/HBoxContainer/Control/ScrollContainer/CenterContainer/VBoxContainer/PanelContainer3/VBoxContainer/CenterContainer/VBoxContainer/HBoxContainer/Button"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -108,6 +108,7 @@ func _on_tab_container_tab_clicked(tab: int):
 	_reset_sliders()
 	_calc_averages()
 	_update_display()
+	relevantScreen.get_node(pathTheoreticalProbability).text = "Null"
 
 
 func _reset_sliders():
@@ -146,10 +147,11 @@ func _graph_trials():
 	get_tree().call_group("histogram", "_import_data", binWidth, quotaMin, quotaMax, quotaArray, trials)
 
 func _calc_theoretical_trials():
+	#Nessessary variables
 	var chosenWagerDictList = {"prob": [], "sampleSpace": []}
 	var discreteNumWager = []
 	var totalWeight = vetoWeightA + vetoWeightB + vetoWeightC
-	var iterations = 0
+	var totalCombinations = 2 ** maxWagers
 	
 	#The actual probability
 	var numerator : float = 0.0
@@ -179,67 +181,45 @@ func _calc_theoretical_trials():
 			probSuccess = float(1) - (float(vetoWeightC) / float(totalWeight))
 			chosenWagerDictList["prob"].append(probSuccess)
 	
-	#also assigning the 0 variations
-	var zeroProbabilityList = []
-	for probability in chosenWagerDictList["prob"]:
-		var inverse = 1 - probability
-		zeroProbabilityList.append(inverse)
-		
-	chosenWagerDictList["prob"] += zeroProbabilityList
-	
 	#Creating the sample space
 	for i in range(discreteNumWager.size()):
 		chosenWagerDictList["sampleSpace"].append(discreteNumWager[i])
 		
-	for i in range(discreteNumWager.size()):
-		chosenWagerDictList["sampleSpace"].append(0)
+	#iterate through all binary combinations
+	for i in range(totalCombinations):
+		var combinationSum : float = 0.0
+		var combinationProbability : float = 1.0
+		var currentCombination = []
 		
-	#Running through all the combinations
-	var indices = []
-	for i in range(maxWagers):
-		indices.append(i)
-		
-	#Main loop
-	
-	while true:
-		var wagerCombination = []
-		var summation: int = 0
-		var probabilityProduct: float = 1.0
-		
-		#Generating the combination
-		for i in indices:
-			wagerCombination.append(chosenWagerDictList["sampleSpace"][i])
-		iterations += 1
+		#Process each bit position
+		for j in range(maxWagers):
+			#Funny bitwise operation
+			var bitIsSet = (i >> j) & 1
 			
-		#Running the quota comparisons & weightings
-		for i in range(wagerCombination.size()):
-			summation += wagerCombination[i]
-			probabilityProduct *= chosenWagerDictList["prob"][indices[i]]
-			
-		if summation >= quota:
-			numerator += probabilityProduct
-			
-		denominator += probabilityProduct
-		
-		
-		#Finding the rightmost value in the wagerCombination that can be incrimented
-		var pos = maxWagers - 1
-		while pos >= 0 and indices[pos] == (maxWagers * 2) - maxWagers + pos:
-			pos -= 1
-			
-		#If no pos can be incrimented, all combinations have been looked through
-		if pos < 0:
-			break
+			if bitIsSet:
+				#Successful Wager
+				combinationSum += chosenWagerDictList["sampleSpace"][j]
+				combinationProbability *= chosenWagerDictList["prob"][j]
+				currentCombination.append(chosenWagerDictList["sampleSpace"][j])
+			else:
+				#wager fails
+				combinationProbability *= (float(1.0) - chosenWagerDictList["prob"][j])
+				currentCombination.append(0)
 				
-		#Incriment the found index
-		indices[pos] += 1
+		#Add all combinations to denominator
+		denominator += combinationProbability
 		
-		#Reset all indices to right of pos
-		for j in range(pos + 1, maxWagers):
-			indices[j] = indices[pos] + (j - pos)
-		
+		#Add to numerator if it meets or exceeds quota
+		if combinationSum >= quota:
+			numerator += combinationProbability
+
+	
 	fraction = numerator / denominator
 	fraction *= 100
+	theoreticalProbability = snapped(fraction, 0.01) if fraction < 10 else snapped(fraction, 0)
+	print(fraction)
+	print(chosenWagerDictList)
+	_update_display()
 	
 
 func _simulate_trials():
@@ -468,7 +448,6 @@ func distributeSliderA():
 	
 	_calc_averages()
 	_simulate_trials()
-	_calc_theoretical_trials()
 	_update_display()
 	
 	
@@ -573,7 +552,6 @@ func distributeSliderB():
 	
 	_calc_averages()
 	_simulate_trials()
-	_calc_theoretical_trials()
 	_update_display()
 	
 	
@@ -677,7 +655,6 @@ func distributeSliderC():
 	
 	_calc_averages()
 	_simulate_trials()
-	_calc_theoretical_trials()
 	_update_display()
 	
 	
@@ -716,6 +693,7 @@ func _update_display():
 	relevantScreen.get_node(pathTrialsAmount).text = str(trials)
 	
 	relevantScreen.get_node(pathExperimentalProbability).text = str(experimentalProbability) + "%"
+	relevantScreen.get_node(pathTheoreticalProbability).text = str(theoreticalProbability) + "%"
 	
 	#Probability C has additional math that fills in any inprecision because this is integer based division
 	#Basically if A% + B% + C% is less than 100, the remainder will be added to C to ensure the probabiltiies

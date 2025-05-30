@@ -60,3 +60,7 @@ func disable_graph_button():
 func enable_graph_button():
 	$CenterContainer/PanelContainer/HBoxContainer/Outcomes/CenterContainer/VBoxContainer2/PanelContainer3/VBoxContainer2/HBoxContainer/Button.disabled = false
 	
+
+
+func _on_theoretical_button_up() -> void:
+	get_tree().call_group("trials_hud", "_calc_theoretical_trials")
